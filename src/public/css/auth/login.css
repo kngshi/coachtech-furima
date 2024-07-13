@@ -1,0 +1,40 @@
+.login-ttl{
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.email-label {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.password-label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 40px;
+}
+
+.login-form {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+
+}
+
+.login-button {
+    display: block;
+    background-color: #FF6347;
+    font-size: 18px;
+    padding: 16px;
+    width: 100%;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.register-link {
+    margin-top: 20px;
+    text-align: center;
+    color: blue;
+}
