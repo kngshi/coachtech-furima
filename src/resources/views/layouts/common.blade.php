@@ -10,8 +10,7 @@
         @yield('css')
     </head>
     <header class="header">
-        <img src="img/logo.svg" alt="coachtech" width="280" height="80">
-            @yield('link')
+        @yield('link')
     </header>
     <body>
         <main>
