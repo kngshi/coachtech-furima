@@ -41,4 +41,33 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+    public function item()
+    {
+        return $this->hasMany(Item::class);
+    }
+
+    // いいねした商品
+    public function likedItems()
+    {
+        return $this->belongsToMany(Item::class, 'likes');
+    }
+
+    // コメントした商品
+    public function commentedItems()
+    {
+        return $this->belongsToMany(Item::class, 'comments')->withPivot('comment');
+    }
+
+    // 購入した商品
+    public function purchasedItems()
+    {
+        return $this->belongsToMany(Item::class, 'sold_items');
+    }
+
 }
