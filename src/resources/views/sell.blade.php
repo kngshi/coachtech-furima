@@ -16,7 +16,7 @@
             <label class="sell-form__label" for="image">商品画像</label>
             </div>
             <div class="sell-form__img">
-                <input type="file" name="image" id="image" class="img-select"required>
+                <input type="file" name="img_url" id="img_url" class="img-select"required>
             </div>
         </div>
       </div>
@@ -27,13 +27,13 @@
             <label class="sell-form__label">カテゴリー</label>
         </div>
         <div class="sell-form__inputs">
-            <input type="text" name="category" id="category" class="form-input" autocomplete="off" required>
+            <input type="text" name="category_id" id="category_id" class="form-input" autocomplete="off" required>
         </div>
         <div class="sell-form__img">
             <label class="sell-form__label">商品の状態</label>
         </div>
         <div class="sell-form__inputs">
-            <input type="text" name="condition" id="condition" class="form-input" autocomplete="off" required>
+            <input type="text" name="condition_id" id="condition_id" class="form-input" autocomplete="off" required>
         </div>
     </div>
 
@@ -59,7 +59,7 @@
             <label class="sell-form__label">販売価格</label>
         </div>
         <div class="sell-form__inputs">
-            <input type="text" name="name" id="name" class="form-input" autocomplete="off" required>
+            <input type="text" name="price" id="price" class="form-input" autocomplete="off" required>
         </div>
     </div>
     <div class="sell-form__group">

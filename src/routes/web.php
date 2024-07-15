@@ -22,7 +22,8 @@ Route::get('/', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/', [ItemController::class, 'index'])->middleware(['auth'])->name('index');
+Route::get('/', [ItemController::class, 'index'])->name('index');
+
 
 Route::middleware(['auth'])->group(function () {
 
@@ -30,5 +31,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/sell', [ItemController::class, 'store']);
 
     Route::get('/mypage', [UserController::class, 'getUser'])->name('mypage');
+
+    Route::get('/mypage/profile', [UserController::class, 'editProfile'])->name('editProfile');
 
 });

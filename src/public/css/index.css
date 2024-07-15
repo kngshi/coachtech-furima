@@ -3,6 +3,7 @@
     justify-content: space-between;
 }
 
+/* ヘッダーCSS */
 .header-logo {
     padding-bottom: 10px;
     padding-left: 20px;
@@ -30,6 +31,7 @@
 
 }
 
+/* タブCSS */
 .tab {
     width: 100%;
 }
