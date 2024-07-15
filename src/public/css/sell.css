@@ -1,0 +1,47 @@
+.sell-form__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sell-form__group {
+    padding-bottom: 30px;
+}
+
+.sell-form__ttl {
+    border-bottom: solid 1px gray;
+}
+
+.sell-form__label {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.sell-form__inputs {
+    padding-bottom: 15px;
+}
+
+.img-select {
+    border: solid 1px black;
+    width:450px;
+    height: 100px;
+}
+
+
+.form-input {
+    width: 450px;
+    height: 30px;
+
+}
+
+.sell-button {
+    display: block;
+    color: white;
+    background-color: #FF6347;
+    font-size: 18px;
+    padding: 10px;
+    width: 450px;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+}

@@ -22,7 +22,13 @@ Route::get('/', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/', [ItemController::class, 'index'])->middleware(['auth'])->name('index');;
+Route::get('/', [ItemController::class, 'index'])->middleware(['auth'])->name('index');
 
-Route::get('/sell', [ItemController::class, 'create']);
-Route::post('/sell', [ItemController::class, 'store']);
+Route::middleware(['auth'])->group(function () {
+
+    Route::get('/sell', [ItemController::class, 'create']);
+    Route::post('/sell', [ItemController::class, 'store']);
+
+    Route::get('/mypage', [UserController::class, 'getUser'])->name('mypage');
+
+});
