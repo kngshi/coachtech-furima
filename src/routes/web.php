@@ -23,6 +23,7 @@ Route::get('/', function () {
 require __DIR__.'/auth.php';
 
 Route::get('/', [ItemController::class, 'index'])->name('index');
+Route::get('/item/{item}', [ItemController::class, 'itemDetail'])->name('item.detail');
 
 
 Route::middleware(['auth'])->group(function () {

@@ -76,12 +76,12 @@
 
 .flex-items {
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .img-box {
     background-color: gray;
-    height: 150px;
-    width: 150px;
+    height: 200px;
+    width: 200px;
     margin: 30px;
 }

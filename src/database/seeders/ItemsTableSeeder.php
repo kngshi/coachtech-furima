@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class ItemssTableSeeder extends Seeder
+class ItemsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -20,7 +20,7 @@ class ItemssTableSeeder extends Seeder
             'name' => 'sample商品',
             'price' => '1000',
             'description' => 'これはsample商品です',
-            'img_url' => 'img_url',
+            'img_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg',
             'user_id' => '1',
             'condition_id' => '2',
         ];
@@ -31,7 +31,7 @@ class ItemssTableSeeder extends Seeder
             'name' => 'sample商品2',
             'price' => '1200',
             'description' => 'これはsample商品2です',
-            'img_url' => 'img_url',
+            'img_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg',
             'user_id' => '1',
             'condition_id' => '1',
         ];
@@ -42,7 +42,7 @@ class ItemssTableSeeder extends Seeder
             'name' => 'sample商品3',
             'price' => '1500',
             'description' => 'これはsample商品3です',
-            'img_url' => 'img_url',
+            'img_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg',
             'user_id' => '1',
             'condition_id' => '3',
         ];
@@ -53,7 +53,7 @@ class ItemssTableSeeder extends Seeder
             'name' => 'sample商品4',
             'price' => '1800',
             'description' => 'これはsample商品4です',
-            'img_url' => 'img_url',
+            'img_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg',
             'user_id' => '1',
             'condition_id' => '3',
         ];

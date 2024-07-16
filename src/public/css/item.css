@@ -1,0 +1,138 @@
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* ヘッダーCSS */
+.header-logo {
+    padding-bottom: 10px;
+    padding-left: 20px;
+}
+
+.flex-link {
+    margin: 20px 15px;
+}
+
+.header-link {
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    margin: 20px 20px;
+}
+
+.header-button {
+    background-color: white;
+    color: black;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: auto 15px;
+    border-radius: 5px;
+
+}
+
+.grid__parent {
+    margin-top: 70px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    flex-direction: column;
+
+}
+
+.grid__child__1 {
+    display: flex;
+    flex-direction: column;
+}
+
+.img-box {
+    background-color: gray;
+    height: 400px;
+    width: 350px;
+    margin: 30px auto;
+}
+
+.grid__child__2 {
+    margin-left:30px;
+}
+
+.item__price {
+    font-size: 24px;
+    padding:10px 0;
+}
+
+.favicon-group {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.favicon-group__star {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top:20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.favicon-group__comment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.like-count {
+    padding:auto;
+}
+
+.purchase__button {
+    display: block;
+    color: white;
+    background-color: #FF6347;
+    font-size: 18px;
+    padding: 10px;
+    width: 320px;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+.item-group__label {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    margin-top: 20px;
+}
+
+.description__content {
+    height: 150px;
+    width: 320px;
+    border: solid 1px gray;
+}
+
+.item-group {
+    margin-top: 30px;
+}
+
+.item-table {
+    margin-top:10px;
+}
+
+.item-table__header {
+    padding-right: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.item-table__category {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.item-table__condition {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}

@@ -35,15 +35,15 @@
     <div class="tab-content">
         <div class="tab-content__item show">おすすめ商品の表示
             <div class="flex-items">
-                <div class="img-box"></div>
-                <div class="img-box"></div>
-                <div class="img-box"></div>
-                <div class="img-box"></div>
-                <div class="img-box"></div>
+                @foreach($items as $item)
+                <a href="{{ route('item.detail', $item->id) }}">
+                    <img src="{{ $item->img_url }}" class="img-box" alt="店舗画像">
+                </a>
+                @endforeach
             </div>
         </div>
         <div class="tab-content__item">マイリストの表示</div>
-    </div>
+        </div>
     </div>
 
 <script>
