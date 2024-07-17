@@ -33,7 +33,7 @@
     </div>
     <div class="grid__child__2">
         <h1 class="item__name">{{ $item->name }}</h1>
-        <div class="item__price">価格: {{ $item->price }}円</div>
+        <div class="item__price">¥{{ number_format($item->price) }}</div>
         <div class="favicon-group">
             <div class="favicon-group__star">
                 <i class="fa-regular fa-star fa-2xl"></i>
@@ -44,11 +44,14 @@
                 <p class="">14</p>
             </div>
         </div>
-        <button class="purchase__button">購入する</button>
-
+        <form action="{{ route('post.detail') }}" method="POST">
+            @csrf
+            <input type="hidden" name="item_id" value="{{ $item->id }}">
+            <button type="submit" class="purchase__button">購入する</button>
+        </form>
         <div class="item-group">
             <div class="item-group__label">商品説明</div>
-            <div class="description__content">{{ $item->description }}</div>
+            <div class="description__content">{!! nl2br(e($item->description)) !!}</div>
         </div>
         <div class="item-group">
             <div class="item-group__label">商品の情報</div>

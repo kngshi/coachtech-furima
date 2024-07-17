@@ -22,11 +22,27 @@ Route::get('/', function () {
 
 require __DIR__.'/auth.php';
 
+// トップページ
 Route::get('/', [ItemController::class, 'index'])->name('index');
+
+// 商品詳細ページ
 Route::get('/item/{item}', [ItemController::class, 'itemDetail'])->name('item.detail');
+
+//詳細ページの「購入する」ボタンから、購入ページ(/purchase/:item_id)への遷移(データ送信)
+Route::post('/purchase', [ItemController::class, 'postDetail'])->name('post.detail');
+
+// 購入ページの表示
+Route::get('/purchase/{item}', [ItemController::class, 'purchaseInformation'])->name('purchase.information');
+
+//購入ページから、購入確定のアクション
+Route::post('/purchase/{item}', [ItemController::class, 'purchaseItem'])->name('purchase.item');
+
+Route::get('/purchase/{item}/complete', [ItemController::class, 'purchaseComplete'])->name('purchase.complete');
 
 
 Route::middleware(['auth'])->group(function () {
+
+    Route::get('/purchase/{item}', [ItemController::class, 'purchaseInformation'])->name('item.purchase');
 
     Route::get('/sell', [ItemController::class, 'create']);
     Route::post('/sell', [ItemController::class, 'store']);

@@ -1,0 +1,152 @@
+.flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* ヘッダーCSS */
+.header-logo {
+    padding-bottom: 10px;
+    padding-left: 20px;
+}
+
+.flex-link {
+    margin: 20px 15px;
+}
+
+.header-link {
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    margin: 20px 20px;
+}
+
+.header-button {
+    background-color: white;
+    color: black;
+    font-size: 18px;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: auto 15px;
+    border-radius: 5px;
+
+}
+
+.grid__parent {
+    margin-top: 70px;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    flex-direction: column;
+
+}
+
+.grid__child__1 {
+    display: flex;
+    flex-direction: column;
+}
+
+.img-box {
+    background-color: gray;
+    height: 120px;
+    width: 100px;
+    margin: 0px auto;
+}
+
+.item-information__group {
+    display: flex;
+    justify-content: flex-start;
+    margin:10px 50px;
+}
+
+.item-img {
+    padding: 10px 20px;
+    margin-right: 50px;
+}
+
+.item-information {
+    display: flex;
+    flex-direction: column;
+}
+
+.item__name {
+    font-size: 28px;
+    font-weight: bold;
+    padding: 10px 0;
+
+}
+
+.item__price {
+    font-size: 22px;
+    padding: 10px 0;
+}
+
+.purchase__group {
+    display: flex;
+    justify-content: space-between;
+    margin:20px 20px;
+}
+
+.payment-method,
+.shipping-address {
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 100px;
+    padding-left: 20px;
+}
+
+.payment-method__link,
+.shipping-address__link {
+    font-size: 20px;
+    text-decoration: none;
+    color: blue;
+    padding-right: 20px;
+}
+
+
+.grid__child__2 {
+    margin:0 auto;
+
+}
+
+.item-table__header1 {
+    padding: 60px 30px;
+    padding-right: 100px;
+    position: relative;
+
+}
+
+.item-table__header{
+    padding:20px 30px;
+    padding-right: 100px;
+
+}
+
+.item-group {
+    height: 300px;
+    width: 350px;
+    font-size: 18px;
+    border: solid 1px black;
+}
+
+.item-table__row1 {
+    height: 60px;
+}
+
+.item-table__row2,
+.item-table__row3 {
+    height: 40px;
+}
+
+.purchase__button {
+    display: block;
+    color: white;
+    text-decoration: none;
+    background-color: #FF6347;
+    font-size: 18px;
+    margin-top: 50px;
+    padding: 10px;
+    width: 350px;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+}

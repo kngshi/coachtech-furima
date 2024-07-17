@@ -90,6 +90,7 @@
 .purchase__button {
     display: block;
     color: white;
+    text-decoration: none;
     background-color: #FF6347;
     font-size: 18px;
     padding: 10px;
@@ -98,6 +99,10 @@
     border: none;
     text-align: center;
     cursor: pointer;
+}
+
+.purchase-link {
+    text-decoration: none;
 }
 
 .item-group__label {
@@ -110,7 +115,10 @@
 .description__content {
     height: 150px;
     width: 320px;
+    overflow: auto;
     border: solid 1px gray;
+    padding: 10px;
+    white-space: pre-wrap;
 }
 
 .item-group {
