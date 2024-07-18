@@ -1,0 +1,71 @@
+.sell-form__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sell-form__heading {
+    padding-top: 20px;
+    font-size: 30px;
+}
+
+.sell-form__group {
+    padding-bottom: 10px;
+}
+
+.group {
+    padding-bottom: 30px;
+}
+
+.sell-form__ttl {
+    border-bottom: solid 1px gray;
+}
+
+.sell-form__label {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.sell-form__inputs {
+    padding-bottom: 15px;
+}
+
+.custom-file-button {
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    color: red;
+    background-color: white;
+    padding: 10px 15px;
+    margin-top: 10px;
+    margin-left: 10%;
+    border: solid 2px #FF6347;
+    border-radius: 7px;
+}
+
+.custom-file-button:hover {
+    cursor: pointer;
+    color: white;
+    background-color: #FF6347;
+
+}
+
+
+.form-input {
+    width: 500px;
+    height: 40px;
+
+}
+
+.sell-button {
+    display: block;
+    color: white;
+    background-color: #FF6347;
+    font-size: 18px;
+    padding: 10px;
+    width: 500px;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+}

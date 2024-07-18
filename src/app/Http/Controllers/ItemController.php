@@ -36,14 +36,12 @@ class ItemController extends Controller
     // 購入ページの表示
     public function purchaseInformation(Item $item)
     {
-    
         return view('purchase', compact('item'));
     }
 
     //  購入確定ボタン
     public function purchaseItem(Request $request, Item $item)
     {
-
         // ログインユーザーのIDを取得
         $user_id = Auth::id();
 
@@ -60,6 +58,13 @@ class ItemController extends Controller
      public function purchaseComplete(Item $item)
     {
         return view('complete', compact('item'));
+    }
+
+
+    public function editAddress(Item $item)
+    {
+
+        return view('address');
     }
 
     public function create()

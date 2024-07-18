@@ -37,7 +37,14 @@ Route::get('/purchase/{item}', [ItemController::class, 'purchaseInformation'])->
 //購入ページから、購入確定のアクション
 Route::post('/purchase/{item}', [ItemController::class, 'purchaseItem'])->name('purchase.item');
 
+//購入完了ページの表示
 Route::get('/purchase/{item}/complete', [ItemController::class, 'purchaseComplete'])->name('purchase.complete');
+
+//住所変更のページ表示
+Route::get('/purchase/address/{item}', [ItemController::class, 'editAddress'])->name('edit.address');
+
+//住所変更のデータ送信
+Route::put('/purchase/address/{item}', [ItemController::class, 'updateAddress'])->name('update.address');
 
 
 Route::middleware(['auth'])->group(function () {

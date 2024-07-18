@@ -44,7 +44,7 @@
         </div>
         <div class="purchase__group">
             <div class="shipping-address">配送先</div>
-            <a class="shipping-address__link" href="">変更する</a>
+            <a class="shipping-address__link" href="{{ route('edit.address', ['item' => $item->id]) }}">変更する</a>
         </div>
     </div>
     <div class="grid__child__2">
