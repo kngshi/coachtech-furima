@@ -47,6 +47,8 @@ Route::get('/purchase/address/{item}', [ItemController::class, 'editAddress'])->
 Route::put('/purchase/address/{item}', [ItemController::class, 'updateAddress'])->name('update.address');
 
 
+
+
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/purchase/{item}', [ItemController::class, 'purchaseInformation'])->name('item.purchase');
@@ -55,7 +57,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/sell', [ItemController::class, 'store']);
 
     Route::get('/mypage', [UserController::class, 'getUser'])->name('mypage');
-
-    Route::get('/mypage/profile', [UserController::class, 'editProfile'])->name('editProfile');
+    //プロフィール変更ページ表示
+    Route::get('/mypage/profile', [UserController::class, 'editProfile'])->name('edit.profile');
+    Route::post('/mypage/profile', [UserController::class, 'storeProfile'])->name('store.profile');
 
 });

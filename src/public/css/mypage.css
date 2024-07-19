@@ -33,15 +33,16 @@
 .mypage__heading {
     display: flex;
     justify-content: space-around;
+    align-items: center;
     padding-top: 50px;
     padding-bottom: 30px;
 }
 
-.mypage__img {
-    background-color: gray;
-    height: 100px;
-    width: 100px;
+.profile-image {
+    height: 120px;
+    width: 120px;
     border-radius: 50%;
+    border: solid 1px #d3d3d3;
 }
 
 .mypage__user {

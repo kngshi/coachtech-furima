@@ -28,14 +28,13 @@
 
 @section('content')
 <div class="mypage__heading">
-    <div class="flex-child">
-        @auth
-        <div class="mypage__user">{{Auth::user()->name}}</div>
-        @endauth
+    <div class="mypage__img">
+        <img src="{{ $profile->img_url }}" alt="プロフィール画像" class="profile-image">
     </div>
-    <div class="flex-child">
-        <a class="profile-link" href="">プロフィールを編集</a>
-    </div>
+    @auth
+    <div class="mypage__user">{{Auth::user()->name}}</div>
+    @endauth
+    <a class="profile-link" href="{{ route('edit.profile') }}">プロフィールを編集</a>
 </div>
     <div class="tab">
     <ul class="tab-menu">

@@ -30,6 +30,15 @@
 
 }
 
+.flash-message__success {
+    padding: 15px 30px;
+    margin-bottom: 10px;
+    border-color: #badbcc;
+    background-color: #d1e7dd;
+    color: #0f5132;
+    font-size: 20px;
+}
+
 .sell-form__inner {
     display: flex;
     flex-direction: column;
@@ -43,6 +52,15 @@
 
 .sell-form__group {
     padding-bottom: 10px;
+}
+
+.profile-image {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    border: solid 1px #d3d3d3;
+
+
 }
 
 .group {
@@ -81,7 +99,7 @@
     background-color: white;
     padding: 10px 15px;
     margin-top:10px;
-    margin-left: 10%;
+    margin-left: 20px;
     border: solid 2px #FF6347;
     border-radius: 7px;
 }
