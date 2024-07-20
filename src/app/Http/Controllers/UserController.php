@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Profile;
+use App\Models\Item;
+use App\Models\SoldItem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -18,7 +20,13 @@ class UserController extends Controller
         // ログインユーザーのプロフィール情報を取得
         $profile = Profile::where('user_id', $user_id)->first();
 
-        return view('mypage', compact('profile'));
+        // ログインユーザーが出品した商品を取得
+        $items = Item::where('user_id', $user_id)->get();
+
+        // ログインユーザーが購入した商品を取得
+        $soldItems = SoldItem::where('user_id', $user_id)->with('item')->get();
+
+        return view('mypage', compact('profile', 'items', 'soldItems'));
     }
 
     public function editProfile()

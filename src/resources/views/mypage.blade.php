@@ -47,21 +47,22 @@
         <li class="tab-menu__item">購入した商品</li>
     </ul>
     <div class="tab-content">
-        <div class="tab-content__item show">出品した商品の表示
+        <div class="tab-content__item show">
             <div class="flex-items">
-                <div class="img-box"></div>
-                <div class="img-box"></div>
-                <div class="img-box"></div>
-                <div class="img-box"></div>
-                <div class="img-box"></div>
+                @foreach($items as $item)
+                <a href="{{ route('item.detail', $item->id) }}">
+                    <img src="{{ $item->img_url }}" class="img-box" alt="{{ $item->name }}">
+                </a>
+                @endforeach
             </div>
         </div>
-        <div class="tab-content__item">購入した商品の表示
+        <div class="tab-content__item">
             <div class="flex-items">
-                <div class="img-box"></div>
-                <div class="img-box"></div>
-                <div class="img-box"></div>
-                <div class="img-box"></div>
+                @foreach($soldItems as $soldItem)
+                <a href="{{ route('item.detail', $item->id) }}">
+                    <img src="{{ $soldItem->item->img_url }}" class="img-box" alt="{{ $soldItem->item->name }}" >
+                </a>
+                @endforeach
             </div>
         </div>
     </div>
