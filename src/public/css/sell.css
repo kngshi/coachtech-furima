@@ -21,9 +21,40 @@
     padding-bottom: 15px;
 }
 
+.sell-form__select {
+    border: dotted 1px black;
+    border-radius: 2px;
+    width: 450px;
+    height: 80px;
+    text-align: center;
+}
+
+.img-select {
+    display: none;
+}
+
+.custom-file-button {
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    color: red;
+    background-color: white;
+    padding: 8px 15px;
+    margin: 15px 0;
+    border: solid 2px #FF6347;
+    border-radius: 7px;
+}
+
+.custom-file-button:hover {
+    cursor: pointer;
+    color: white;
+    background-color: #FF6347;
+
+}
+
 .img-select {
     border: solid 1px black;
-    width:450px;
+    width: 450px;
     height: 100px;
 }
 

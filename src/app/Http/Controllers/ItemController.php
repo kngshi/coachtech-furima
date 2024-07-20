@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Item;
 use App\Models\SoldItem;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ItemController extends Controller
 {
@@ -69,39 +70,52 @@ class ItemController extends Controller
 
     public function create()
     {
-        return view('sell');
+        // ログインユーザーのIDを取得
+        $user_id = Auth::id();
+        
+        return view('sell', compact('user_id'));
     }
 
     public function store(Request $request)
     {
         // ログインユーザーのIDを取得
-        $userId = Auth::id();
+        $user_id = Auth::id();
 
-        $img_url = 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg';
-
-        $request->validate([
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:191',
+            'price' => 'required|integer',
+            'description' => 'required|string|max:400',
+            'img_url' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'user_id' => 'required',
-            'name' => 'required',
-            'price' => 'required',
-            'description' => 'required',
-            'img_url' => 'required',
-            'user_id' => 'required',
-            'condition_id' => 'required',
+            'condition_id' => 'required|integer',
         ]);
 
-        $itemData = [
-            'user_id' => $userId,
-            'name' => $request->input('name'),
-            'price' => $request->input('price'),
-            'description' => $request->input('description'),
-            'img_url' => $img_url,
-            'user_id' => $userId,
-            'condition_id' => $request->input('condition_id'),
-        ];
+        // 画像のアップロード処理
+        if ($request->hasFile('img_url')) {
+            $image = $request->file('img_url');
+            $imagePath = $image->store('items', 'public');
+            $imageUrl = Storage::url($imagePath);
+        } else {
+            $imageUrl = null;
+        }
 
-        $sell = Item::create($itemData);
+        // 商品情報の保存
+        $item = Item::create([
+            'name' => $validatedData['name'],
+            'price' => $validatedData['price'],
+            'description' => $validatedData['description'],
+            'img_url' => $imageUrl,
+            'user_id' => $user_id,
+            'condition_id' => $validatedData['condition_id'],
+        ]);
 
-        return view('sell', compact('sell'));
+        // カテゴリーの紐付け
+        if ($request->has('category_id')) {
+            $item->categories()->sync([$request->input('category_id')]);
+        }
+
+        return redirect()->route('mypage', compact('user_id'))
+            ->with('success', '商品を出品しました。');
     }
 
 }

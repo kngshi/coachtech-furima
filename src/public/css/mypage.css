@@ -30,6 +30,16 @@
 
 }
 
+.flash-message__success {
+    padding: 15px 30px;
+    margin-bottom: 10px;
+    border-color: #badbcc;
+    background-color: #d1e7dd;
+    color: #0f5132;
+    font-size: 20px;
+}
+
+
 .mypage__heading {
     display: flex;
     justify-content: space-around;

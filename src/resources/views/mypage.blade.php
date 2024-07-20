@@ -27,6 +27,11 @@
 @endsection
 
 @section('content')
+@if (session('success'))
+    <div class="flash-message__success">
+        {{ session('success') }}
+    </div>
+@endif
 <div class="mypage__heading">
     <div class="mypage__img">
         <img src="{{ $profile->img_url }}" alt="プロフィール画像" class="profile-image">

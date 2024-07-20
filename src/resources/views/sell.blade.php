@@ -5,18 +5,25 @@
 @endsection
 
 @section('content')
+@if (session('success'))
+    <div class="flash-message__success">
+        {{ session('success') }}
+    </div>
+@endif
  <div class="sell-form">
   <div class="sell-form__inner">
     <h2 class="sell-form__heading">商品の出品</h2>
-    <form action="sell" method="post">
+    <form action="sell" method="post" enctype="multipart/form-data">
       @csrf
       <div class="sell-form__group">
         <div class="sell-form__img">
             <div class="sell-form__img">
             <label class="sell-form__label" for="image">商品画像</label>
             </div>
-            <div class="sell-form__img">
+            <div class="sell-form__select">
                 <input type="file" name="img_url" id="img_url" class="img-select"required>
+                <button type="button" class="custom-file-button">画像を選択する</button>
+                <span id="file-name"></span>
             </div>
         </div>
       </div>
@@ -62,10 +69,21 @@
             <input type="text" name="price" id="price" class="form-input" autocomplete="off" required>
         </div>
     </div>
+    <input type="hidden" name="user_id" value="{{ $user_id }}">
     <div class="sell-form__group">
         <button type="submit" class="sell-button">出品する</button>
     </div>
     </form>
   </div>
 </div>
+<script>
+        document.querySelector('.custom-file-button').addEventListener('click', function() {
+          document.getElementById('img_url').click();
+        });
+
+        document.getElementById('img_url').addEventListener('change', function() {
+          const fileName = this.files[0] ? this.files[0].name : 'ファイルが選択されていません';
+          document.getElementById('file-name').textContent = fileName;
+        });
+</script>
 @endsection
