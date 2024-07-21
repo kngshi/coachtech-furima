@@ -52,8 +52,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/purchase/{item}', [ItemController::class, 'purchaseInformation'])->name('item.purchase');
 
-    Route::get('/sell', [ItemController::class, 'create'])->name('sell.create');
-    Route::post('/sell', [ItemController::class, 'store'])->name('sell.store');
+    Route::get('/sell', [ItemController::class, 'createItem'])->name('sell.create');
+    Route::post('/sell', [ItemController::class, 'storeItem'])->name('sell.store');
 
     Route::get('/mypage', [UserController::class, 'getUser'])->name('mypage');
     //プロフィール変更ページ表示

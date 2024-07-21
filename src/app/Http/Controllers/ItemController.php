@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Storage;
 
 class ItemController extends Controller
 {
-    // トップページの表示
     public function index(Request $request)
     {
         $user_id = Auth::id();
@@ -25,13 +24,11 @@ class ItemController extends Controller
         return view('index', compact('items', 'likedItems'));
     }
 
-    //商品詳細ページの表示
     public function itemDetail(Item $item)
     {
         return view('item', compact('item'));
     }
 
-    // 商品詳細ページから、/purchase/{item}にデータ送信
     public function postDetail(Request $request)
     {
         $item = Item::findOrFail($request->item_id);
@@ -39,51 +36,42 @@ class ItemController extends Controller
         return redirect()->route('item.purchase', ['item' => $request->item_id]);
     }
 
-    // 購入ページの表示
     public function purchaseInformation(Item $item)
     {
         return view('purchase', compact('item'));
     }
 
-    //  購入確定ボタン
     public function purchaseItem(Request $request, Item $item)
     {
-        // ログインユーザーのIDを取得
         $user_id = Auth::id();
 
-        // 購入情報を保存
         $soldItem = SoldItem::create([
             'user_id' => $user_id,
             'item_id' => $item->id,
         ]);
 
-        // 購入完了ページにリダイレクト
         return redirect()->route('purchase.complete', ['item' => $item->id]);
     }
 
-     public function purchaseComplete(Item $item)
+    public function purchaseComplete(Item $item)
     {
         return view('complete', compact('item'));
     }
 
-
     public function editAddress(Item $item)
     {
-
         return view('address');
     }
 
-    public function create()
+    public function createItem()
     {
-        // ログインユーザーのIDを取得
         $user_id = Auth::id();
-        
+
         return view('sell', compact('user_id'));
     }
 
-    public function store(Request $request)
+    public function storeItem(Request $request)
     {
-        // ログインユーザーのIDを取得
         $user_id = Auth::id();
 
         $validatedData = $request->validate([
@@ -95,7 +83,6 @@ class ItemController extends Controller
             'condition_id' => 'required|integer',
         ]);
 
-        // 画像のアップロード処理
         if ($request->hasFile('img_url')) {
             $image = $request->file('img_url');
             $imagePath = $image->store('items', 'public');
@@ -104,7 +91,6 @@ class ItemController extends Controller
             $imageUrl = null;
         }
 
-        // 商品情報の保存
         $item = Item::create([
             'name' => $validatedData['name'],
             'price' => $validatedData['price'],
@@ -114,7 +100,6 @@ class ItemController extends Controller
             'condition_id' => $validatedData['condition_id'],
         ]);
 
-        // カテゴリーの紐付け
         if ($request->has('category_id')) {
             $item->categories()->sync([$request->input('category_id')]);
         }
@@ -122,5 +107,4 @@ class ItemController extends Controller
         return redirect()->route('mypage', compact('user_id'))
             ->with('success', '商品を出品しました。');
     }
-
 }

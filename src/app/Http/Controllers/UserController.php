@@ -14,16 +14,12 @@ class UserController extends Controller
 {
     public function getUser()
     {
-       // ログインユーザーのIDを取得
         $user_id = Auth::id();
 
-        // ログインユーザーのプロフィール情報を取得
         $profile = Profile::where('user_id', $user_id)->first();
 
-        // ログインユーザーが出品した商品を取得
         $items = Item::where('user_id', $user_id)->get();
 
-        // ログインユーザーが購入した商品を取得
         $soldItems = SoldItem::where('user_id', $user_id)->with('item')->get();
 
         return view('mypage', compact('profile', 'items', 'soldItems'));
@@ -31,7 +27,6 @@ class UserController extends Controller
 
     public function editProfile()
     {
-        // ログインユーザーのIDを取得
         $user_id = Auth::id();
 
         $profile = Auth::user()->profile;
@@ -50,7 +45,6 @@ class UserController extends Controller
             'building' => 'nullable|string|max:191',
         ]);
 
-        // プロフィール画像のアップロード処理
         if ($request->hasFile('img_url')) {
             $image = $request->file('img_url');
             $imagePath = $image->store('profiles', 'public');
@@ -59,9 +53,8 @@ class UserController extends Controller
             $imageUrl = Auth::user()->profile->img_url ?? null;
         }
 
-        // プロフィール情報の更新または作成
         $profile = Profile::updateOrCreate(
-            ['user_id' => $user_id], // 検索条件
+            ['user_id' => $user_id],
             [
                 'img_url' => $imageUrl,
                 'postcode' => $request->input('postcode'),
@@ -70,8 +63,7 @@ class UserController extends Controller
             ]
         );
 
-    // プロフィールページにリダイレクト
-    return redirect()->route('store.profile', compact('user_id'))
+        return redirect()->route('store.profile', compact('user_id'))
         ->with('success', 'プロフィールを更新しました。');
     }
 }
