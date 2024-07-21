@@ -52,13 +52,16 @@ class User extends Authenticatable
         return $this->hasMany(Item::class);
     }
 
-    // いいねした商品
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
+
     public function likedItems()
     {
         return $this->belongsToMany(Item::class, 'likes');
     }
 
-    // コメントした商品
     public function commentedItems()
     {
         return $this->belongsToMany(Item::class, 'comments')->withPivot('comment');

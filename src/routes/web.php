@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\LikeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +17,9 @@ use App\Http\Controllers\ItemController;
 |
 */
 
+Route::get('/', function () {
+    return view('index');
+})->middleware(['auth'])->name('dashboard');
 
 Route::get('/', function () {
     return view('index');
@@ -27,6 +32,8 @@ Route::get('/', [ItemController::class, 'index'])->name('index');
 
 // 商品詳細ページ
 Route::get('/item/{item}', [ItemController::class, 'itemDetail'])->name('item.detail');
+Route::post('/item/{item}/like', [LikeController::class, 'like'])->name('item.like');
+Route::delete('/item/{item}/unlike', [LikeController::class, 'unlike'])->name('item.unlike');
 
 //詳細ページの「購入する」ボタンから、購入ページ(/purchase/:item_id)への遷移(データ送信)
 Route::post('/purchase', [ItemController::class, 'postDetail'])->name('post.detail');
