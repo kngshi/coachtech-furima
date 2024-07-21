@@ -12,7 +12,13 @@
     </div>
     @if(Auth::check())
     <div class="flex-link">
-        <a class="header-link" href="{{ route('logout') }}">ログアウト</a>
+        <a href="{{ route('logout') }}" class="header-link"
+            onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">ログアウト
+        </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
         <a class="header-link" href="{{ route('mypage') }}">マイページ</a>
         <a class="header-button" href="/sell">出品</a>
     </div>
@@ -27,7 +33,7 @@
 @endsection
 
 @section('content')
-    <div class="tab">
+<div class="tab">
     <ul class="tab-menu">
         <li class="tab-menu__item active">おすすめ</li>
         <li class="tab-menu__item">マイリスト</li>
@@ -42,9 +48,16 @@
                 @endforeach
             </div>
         </div>
-        <div class="tab-content__item">マイリストの表示</div>
+        <div class="tab-content__item"></div>
+        <div class="flex-items">
+            @foreach($likedItems as $likedItem)
+            <a href="{{ route('item.detail', $likedItem->id) }}">
+                <img src="{{ $likedItem->img_url }}" class="img-box" alt="商品画像">
+            </a>
+            @endforeach
         </div>
     </div>
+</div>
 
 <script>
     const tabs = document.getElementsByClassName('tab-menu__item');

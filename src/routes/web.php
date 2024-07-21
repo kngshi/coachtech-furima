@@ -17,14 +17,6 @@ use App\Http\Controllers\LikeController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->middleware(['auth'])->name('dashboard');
-
-Route::get('/', function () {
-    return view('index');
-})->middleware(['auth'])->name('dashboard');
-
 require __DIR__.'/auth.php';
 
 // トップページ

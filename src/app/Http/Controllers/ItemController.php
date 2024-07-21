@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Category;
 use App\Models\Item;
 use App\Models\SoldItem;
+use App\Models\Like;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,9 +16,13 @@ class ItemController extends Controller
     // トップページの表示
     public function index(Request $request)
     {
+        $user_id = Auth::id();
+
         $items = Item::all();
 
-        return view('index', compact('items'));
+        $likedItems = Like::where('user_id', $user_id)->with('item')->get()->pluck('item');
+
+        return view('index', compact('items', 'likedItems'));
     }
 
     //商品詳細ページの表示
