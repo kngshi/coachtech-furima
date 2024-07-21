@@ -1,9 +1,8 @@
-.flex {
+.header-flex {
     display: flex;
     justify-content: space-between;
 }
 
-/* ヘッダーCSS */
 .header-logo {
     padding-bottom: 10px;
     padding-left: 20px;
@@ -26,12 +25,11 @@
     font-size: 18px;
     text-decoration: none;
     padding: 10px 20px;
-    margin: auto 15px;
+    margin: auto 20px;
     border-radius: 5px;
 
 }
 
-/* タブCSS */
 .tab {
     width: 100%;
 }
@@ -49,7 +47,6 @@
     padding-right: 30px;
     cursor: pointer;
     list-style: none;
-
 }
 
 .tab-menu__item:not(:first-child) {
@@ -74,13 +71,14 @@
     display: block;
 }
 
-.flex-items {
+.items-index {
     display: flex;
     flex-wrap: wrap;
 }
 
 .img-box {
-    background-color: gray;
+    border-radius: 3px;
+    border: solid 1px #d3d3d3;
     height: 200px;
     width: 200px;
     margin: 30px;

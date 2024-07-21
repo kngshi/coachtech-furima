@@ -6,9 +6,11 @@
 
 
 @section('link')
-<div class="flex">
+<div class="header-flex">
     <div class="flex-content">
-    <img src="img/logo.svg" alt="coachtech" width="280" height="80" class="header-logo">
+        <a href="/">
+            <img src="img/logo.svg" alt="coachtech" width="280" height="80" class="header-logo">
+        </a>
     </div>
     @if(Auth::check())
     <div class="flex-link">
@@ -16,7 +18,7 @@
             onclick="event.preventDefault();
             document.getElementById('logout-form').submit();">ログアウト
         </a>
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        <form id="logout-form" class="header-link" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
         </form>
         <a class="header-link" href="{{ route('mypage') }}">マイページ</a>
@@ -39,8 +41,8 @@
         <li class="tab-menu__item">マイリスト</li>
     </ul>
     <div class="tab-content">
-        <div class="tab-content__item show">おすすめ商品の表示
-            <div class="flex-items">
+        <div class="tab-content__item show">
+            <div class="items-index">
                 @foreach($items as $item)
                 <a href="{{ route('item.detail', $item->id) }}">
                     <img src="{{ $item->img_url }}" class="img-box" alt="店舗画像">
@@ -49,7 +51,7 @@
             </div>
         </div>
         <div class="tab-content__item"></div>
-        <div class="flex-items">
+        <div class="items-index">
             @foreach($likedItems as $likedItem)
             <a href="{{ route('item.detail', $likedItem->id) }}">
                 <img src="{{ $likedItem->img_url }}" class="img-box" alt="商品画像">
