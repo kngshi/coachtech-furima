@@ -1,4 +1,4 @@
-.flex {
+.header-flex {
     display: flex;
     justify-content: space-between;
 }
@@ -27,7 +27,6 @@
     padding: 10px 20px;
     margin: auto 15px;
     border-radius: 5px;
-
 }
 
 .flash-message__success {
@@ -48,7 +47,7 @@
     padding-bottom: 30px;
 }
 
-.profile-image {
+.profile-img {
     height: 120px;
     width: 120px;
     border-radius: 50%;
@@ -71,8 +70,6 @@
     border-radius: 7px;
 }
 
-
-/* タブ */
 .tab {
     width: 100%;
 }
@@ -90,7 +87,6 @@
     padding-right: 30px;
     cursor: pointer;
     list-style: none;
-
 }
 
 .tab-menu__item:not(:first-child) {
@@ -115,7 +111,7 @@
     display: block;
 }
 
-.flex-items {
+.items-index {
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
