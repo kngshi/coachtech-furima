@@ -1,9 +1,8 @@
-.flex {
+.header-flex {
     display: flex;
     justify-content: space-between;
 }
 
-/* ヘッダーCSS */
 .header-logo {
     padding-bottom: 10px;
     padding-left: 20px;
@@ -28,27 +27,18 @@
     padding: 10px 20px;
     margin: auto 15px;
     border-radius: 5px;
-
 }
 
-.grid__parent {
+.grid-container {
     margin-top: 70px;
     display: grid;
     grid-template-columns: 1.5fr 1fr;
     flex-direction: column;
-
 }
 
-.grid__child__1 {
+.grid-left {
     display: flex;
     flex-direction: column;
-}
-
-.img-box {
-    background-color: gray;
-    height: 120px;
-    width: 100px;
-    margin: 0px auto;
 }
 
 .item-information__group {
@@ -62,20 +52,27 @@
     margin-right: 50px;
 }
 
+.img-box {
+    background-color: gray;
+    height: 120px;
+    width: 100px;
+    margin: 0px auto;
+}
+
 .item-information {
     display: flex;
     flex-direction: column;
 }
 
 .item__name {
-    font-size: 28px;
+    font-size: 24px;
     font-weight: bold;
     padding: 10px 0;
 
 }
 
 .item__price {
-    font-size: 22px;
+    font-size: 20px;
     padding: 10px 0;
 }
 
@@ -102,22 +99,8 @@
 }
 
 
-.grid__child__2 {
+.grid-right {
     margin:0 auto;
-
-}
-
-.item-table__header1 {
-    padding: 60px 30px;
-    padding-right: 100px;
-    position: relative;
-
-}
-
-.item-table__header{
-    padding:20px 30px;
-    padding-right: 100px;
-
 }
 
 .item-group {
@@ -127,12 +110,22 @@
     border: solid 1px black;
 }
 
-.item-table__row1 {
+.item-table__row--price {
     height: 60px;
 }
 
-.item-table__row2,
-.item-table__row3 {
+.item-table__header--price {
+    padding: 60px 30px;
+    padding-right: 100px;
+    position: relative;
+}
+
+.item-table__header{
+    padding:20px 30px;
+    padding-right: 100px;
+}
+
+.item-table__row--payment {
     height: 40px;
 }
 
@@ -149,4 +142,8 @@
     border: none;
     text-align: center;
     cursor: pointer;
+}
+
+.purchase__button:hover {
+    background-color: red;
 }

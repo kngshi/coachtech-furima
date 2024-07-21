@@ -8,7 +8,7 @@
 @section('link')
 <div class="header-flex">
     <div class="flex-content">
-    <a href="/">
+        <a href="/">
             <img src="/img/logo.svg" alt="coachtech" width="280" height="80" class="header-logo">
         </a>
     </div>

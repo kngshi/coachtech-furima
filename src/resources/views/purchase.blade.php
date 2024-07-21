@@ -4,15 +4,22 @@
     <link rel="stylesheet" href="{{ asset('css/purchase.css') }}" />
 @endsection
 
-
 @section('link')
-<div class="flex">
+<div class="header-flex">
     <div class="flex-content">
-    <img src="img/logo.svg" alt="coachtech" width="280" height="80" class="header-logo">
+        <a href="/">
+            <img src="/img/logo.svg" alt="coachtech" width="280" height="80" class="header-logo">
+        </a>
     </div>
     @if(Auth::check())
     <div class="flex-link">
-        <a class="header-link" href="{{ route('logout') }}">ログアウト</a>
+        <a href="{{ route('logout') }}" class="header-link"
+            onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">ログアウト
+        </a>
+        <form id="logout-form" class="header-link" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
         <a class="header-link" href="{{ route('mypage') }}">マイページ</a>
         <a class="header-button" href="/sell">出品</a>
     </div>
@@ -27,11 +34,11 @@
 @endsection
 
 @section('content')
-<div class="grid__parent">
-    <div class="grid__child__1">
+<div class="grid-container">
+    <div class="grid-left">
         <div class="item-information__group">
             <div class="item-img">
-            <img src="{{ $item->img_url }}" alt="商品画像" class="img-box">
+                <img src="{{ $item->img_url }}" alt="商品画像" class="img-box">
             </div>
             <div class="item-information">
                 <div class="item__name">{{ $item->name }}</div>
@@ -47,24 +54,23 @@
             <a class="shipping-address__link" href="{{ route('edit.address', ['item' => $item->id]) }}">変更する</a>
         </div>
     </div>
-    <div class="grid__child__2">
+    <div class="grid-right">
         <div class="item-group">
             <table class="item-table">
-                <tr class="item-table__row1">
-                    <th class="item-table__header1">商品代金</th>
+                <tr class="item-table__row--price">
+                    <th class="item-table__header--price">商品代金</th>
                     <td class="item-table__price">¥{{ number_format($item->price) }}</td>
                 </tr>
-                <tr class="item-table__row2">
+                <tr class="item-table__row--payment">
                     <th class="item-table__header">支払い金額</th>
                     <td class="item-table__payment">¥{{ number_format($item->price) }}</td>
                 </tr>
-                <tr class="item-table__row3">
+                <tr class="item-table__row--payment">
                     <th class="item-table__header">支払い方法</th>
                     <td class="item-table__payment-method">コンビニ払い</td>
                 </tr>
             </table>
         </div>
-
         <form action="{{ route('purchase.item', ['item' => $item->id]) }}" method="POST">
         @csrf
         <button type="submit" class="purchase__button">購入する</button>
