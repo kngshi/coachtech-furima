@@ -1,4 +1,4 @@
-.flex {
+.header-flex {
     display: flex;
     justify-content: space-between;
 }
@@ -27,7 +27,6 @@
     padding: 10px 20px;
     margin: auto 15px;
     border-radius: 5px;
-
 }
 
 .flash-message__success {
@@ -39,19 +38,19 @@
     font-size: 20px;
 }
 
-.sell-form__inner {
+.container__inner {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.sell-form__heading {
+.container__heading {
     padding-top: 20px;
     font-size: 30px;
 }
 
-.sell-form__group {
-    padding-bottom: 10px;
+.profile-form__group {
+    padding-bottom: 16px;
 }
 
 .profile-image {
@@ -61,32 +60,24 @@
     border: solid 1px #d3d3d3;
 }
 
-.group {
-    padding-bottom: 16px;
-}
-
-.sell-form__ttl {
+.profile-form__ttl {
     border-bottom: solid 1px gray;
 }
 
-.sell-form__label {
+.profile-form__label {
     font-size: 18px;
     font-weight: bold;
 }
 
-
-.sell-form__inputs {
+.profile-form__inputs {
     padding-bottom: 15px;
 }
 
 .img-select {
+    display: none;
     border: solid 1px black;
     width: 300px;
     height: 60px;
-}
-
-.img-select {
-    display: none;
 }
 
 .custom-file-button {
@@ -106,17 +97,14 @@
     cursor: pointer;
     color: white;
     background-color: #FF6347;
-
 }
-
 
 .form-input {
     width: 450px;
     height: 40px;
-
 }
 
-.sell-button {
+.profile-update__button {
     display: block;
     color: white;
     background-color: #FF6347;
@@ -127,4 +115,8 @@
     border: none;
     text-align: center;
     cursor: pointer;
+}
+
+.profile-update__button:hover {
+    background-color: red;
 }
