@@ -6,13 +6,21 @@
 
 
 @section('link')
-<div class="flex">
+<div class="header-flex">
     <div class="flex-content">
-    <img src="img/logo.svg" alt="coachtech" width="280" height="80" class="header-logo">
+    <a href="/">
+            <img src="/img/logo.svg" alt="coachtech" width="280" height="80" class="header-logo">
+        </a>
     </div>
     @if(Auth::check())
     <div class="flex-link">
-        <a class="header-link" href="{{ route('logout') }}">ログアウト</a>
+        <a href="{{ route('logout') }}" class="header-link"
+            onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">ログアウト
+        </a>
+        <form id="logout-form" class="header-link" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
         <a class="header-link" href="{{ route('mypage') }}">マイページ</a>
         <a class="header-button" href="/sell">出品</a>
     </div>
@@ -28,24 +36,26 @@
 
 @section('content')
 @if (session('create'))
-    <div class="flash-message__create">
-        {{ session('create') }}
-    </div>
+    <div class="flash-message__create">{{ session('create') }}</div>
 @endif
 @if (session('delete'))
     <div class="flash-message__delete">{{ session('delete') }}</div>
 @endif
-<div class="grid__parent">
-    <div class="grid__child__1">
+@if (session('fail'))
+    <div class="flash-message__fail">{{ session('fail') }}</div>
+@endif
+
+<div class="grid-container">
+    <div class="grid-left">
         <img src="{{ $item->img_url }}" alt="商品画像" class="img-box">
     </div>
-    <div class="grid__child__2">
+    <div class="grid-right">
         <h1 class="item__name">{{ $item->name }}</h1>
         <div class="item__price">¥{{ number_format($item->price) }}</div>
         <div class="favicon-group">
-        <div class="favicon-group__star">
-        @auth
-            @if (Auth::user()->likes->contains('item_id', $item->id))
+            <div class="favicon-group__star">
+            @auth
+                @if (Auth::user()->likes->contains('item_id', $item->id))
                     <form action="{{ route('item.unlike', $item) }}" method="POST">
                         @csrf
                         @method('DELETE')
@@ -63,19 +73,18 @@
                     </form>
                     <p class="favicon-count">{{ $item->likes->count() }}</p>
                 @endif
-        @else
-        <a href="{{ route('login') }}">
-            <i class="fa-regular fa-star fa-2xl"></i>
-        </a>
-            <p class="favicon-count">{{ $item->likes->count() }}</p>
-        @endauth
-        </div>
+            @else
+                <a href="{{ route('login') }}">
+                    <i class="fa-regular fa-star fa-2xl"></i>
+                </a>
+                <p class="favicon-count">{{ $item->likes->count() }}</p>
+            @endauth
+            </div>
             <div class="favicon-group__comment">
                 <i class="fa-regular fa-comment fa-2xl"></i>
                 <p class="">14</p>
             </div>
         </div>
-    
         <form action="{{ route('post.detail') }}" method="POST">
             @csrf
             <input type="hidden" name="item_id" value="{{ $item->id }}">
