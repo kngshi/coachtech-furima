@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LikeController;
-
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,12 +40,10 @@ Route::post('/purchase/{item}', [ItemController::class, 'purchaseItem'])->name('
 Route::get('/purchase/{item}/complete', [ItemController::class, 'purchaseComplete'])->name('purchase.complete');
 
 //住所変更のページ表示
-Route::get('/purchase/address/{item}', [ItemController::class, 'editAddress'])->name('edit.address');
+Route::get('/purchase/address/{item}', [ProfileController::class, 'editAddress'])->name('edit.address');
 
 //住所変更のデータ送信
-Route::put('/purchase/address/{item}', [ItemController::class, 'updateAddress'])->name('update.address');
-
-
+Route::put('/purchase/address/{item}', [ProfileController::class, 'updateAddress'])->name('update.address');
 
 
 Route::middleware(['auth'])->group(function () {

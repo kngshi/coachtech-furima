@@ -1,15 +1,24 @@
-.sell-form__inner {
+.flash-message__success {
+    padding: 15px 30px;
+    margin-bottom: 10px;
+    border-color: #badbcc;
+    background-color: #d1e7dd;
+    color: #0f5132;
+    font-size: 20px;
+}
+
+.container__inner {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.sell-form__heading {
-    padding-top: 20px;
-    font-size: 30px;
+.address-form__heading {
+    padding-top: 10px;
+    font-size: 24px;
 }
 
-.sell-form__group {
+.address-form__group {
     padding-bottom: 10px;
 }
 
@@ -17,16 +26,16 @@
     padding-bottom: 30px;
 }
 
-.sell-form__ttl {
+.address-form__ttl {
     border-bottom: solid 1px gray;
 }
 
-.sell-form__label {
+.address-form__label {
     font-size: 18px;
     font-weight: bold;
 }
 
-.sell-form__inputs {
+.address-form__inputs {
     padding-bottom: 15px;
 }
 
@@ -57,7 +66,7 @@
 
 }
 
-.sell-button {
+.address-button {
     display: block;
     color: white;
     background-color: #FF6347;

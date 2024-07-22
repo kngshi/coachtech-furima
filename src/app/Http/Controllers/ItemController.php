@@ -58,11 +58,6 @@ class ItemController extends Controller
         return view('complete', compact('item'));
     }
 
-    public function editAddress(Item $item)
-    {
-        return view('address');
-    }
-
     public function createItem()
     {
         $user_id = Auth::id();
