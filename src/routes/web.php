@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CommentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,5 +58,10 @@ Route::middleware(['auth'])->group(function () {
     //プロフィール変更ページ表示
     Route::get('/mypage/profile', [UserController::class, 'editProfile'])->name('edit.profile');
     Route::post('/mypage/profile', [UserController::class, 'storeProfile'])->name('store.profile');
+
+    // コメント追加・削除機能
+    Route::get('/item/{item}/comment', [CommentController::class, 'createComment'])->name('create.comment');
+    Route::post('/item/{item}/comment', [CommentController::class, 'storeComment'])->name('store.comment');
+    Route::delete('/item/{item}/comment/{comment}', [CommentController::class, 'destroyComment'])->name('destroy.comment');
 
 });

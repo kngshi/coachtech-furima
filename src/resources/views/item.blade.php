@@ -44,7 +44,6 @@
 @if (session('fail'))
     <div class="flash-message__fail">{{ session('fail') }}</div>
 @endif
-
 <div class="grid-container">
     <div class="grid-left">
         <img src="{{ $item->img_url }}" alt="商品画像" class="img-box">
@@ -80,32 +79,38 @@
                 <p class="favicon-count">{{ $item->likes->count() }}</p>
             @endauth
             </div>
+            @auth
             <div class="favicon-group__comment">
-                <i class="fa-regular fa-comment fa-2xl"></i>
-                <p class="">14</p>
+                <a href="{{ route('create.comment', $item->id) }}">
+                    <i class="fa-regular fa-comment fa-2xl" style="color: black;"></i>
+                </a>
+                <p class="favicon-count">{{ $item->comments ? $item->comments->count() : 0 }}</p>
             </div>
+            @endauth
         </div>
         <form action="{{ route('post.detail') }}" method="POST">
             @csrf
             <input type="hidden" name="item_id" value="{{ $item->id }}">
             <button type="submit" class="purchase__button">購入する</button>
         </form>
-        <div class="item-group">
-            <div class="item-group__label">商品説明</div>
-            <div class="description__content">{!! nl2br(e($item->description)) !!}</div>
-        </div>
-        <div class="item-group">
-            <div class="item-group__label">商品の情報</div>
-            <table class="item-table">
-                <tr class="item-table__row">
-                    <th class="item-table__header">カテゴリー</th>
-                    <td class="item-table__category">表示</td>
-                </tr>
-                <tr class="item-table__row">
-                    <th class="item-table__header">商品の状態</th>
-                    <td class="item-table__condition">{{ $item->condition->condition }}</td>
-                </tr>
-            </table>
+        <div class="comment-alternative">
+            <div class="item-group">
+                <div class="item-group__label">商品説明</div>
+                <div class="description__content">{!! nl2br(e($item->description)) !!}</div>
+            </div>
+            <div class="item-group">
+                <div class="item-group__label">商品の情報</div>
+                <table class="item-table">
+                    <tr class="item-table__row">
+                        <th class="item-table__header">カテゴリー</th>
+                        <td class="item-table__category">表示</td>
+                    </tr>
+                    <tr class="item-table__row">
+                        <th class="item-table__header">商品の状態</th>
+                        <td class="item-table__condition">{{ $item->condition->condition }}</td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 </div>
