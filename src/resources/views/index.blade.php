@@ -4,7 +4,6 @@
     <link rel="stylesheet" href="{{ asset('css/index.css') }}" />
 @endsection
 
-
 @section('link')
 <div class="header-flex">
     <div class="flex-content">

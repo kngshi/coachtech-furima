@@ -6,14 +6,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>coachtech-furima</title>
         <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
+        <link rel="stylesheet" href="{{ asset('css/components/header.css') }}" />
         <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
         @yield('css')
         <script src="https://kit.fontawesome.com/7f44e1f3ad.js" crossorigin="anonymous"></script>
     </head>
-    <header class="header">
-        @yield('link')
-    </header>
     <body>
+        <header class="header">
+            @yield('link')
+        </header>
         <main>
             @yield('content')
         </main>

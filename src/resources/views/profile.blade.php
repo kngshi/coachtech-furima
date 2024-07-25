@@ -7,7 +7,9 @@
 @section('link')
 <div class="header-flex">
     <div class="flex-content">
-        <img src="/img/logo.svg" alt="coachtech" width="280" height="80" class="header-logo">
+        <a href="/">
+            <img src="/img/logo.svg" alt="coachtech" width="280" height="80" class="header-logo">
+        </a>
     </div>
     @if(Auth::check())
     <div class="flex-link">
