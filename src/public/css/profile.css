@@ -49,15 +49,32 @@
     font-size: 30px;
 }
 
+.group-img {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
 .profile-form__group {
     padding-bottom: 16px;
 }
 
-.profile-image {
+.profile-img {
     height: 100px;
     width: 100px;
     border-radius: 50%;
     border: solid 1px #d3d3d3;
+    margin-right: 20px;
+}
+
+.profile-img__default {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background-color: #d3d3d3;
+    border: solid 1px #d3d3d3;
+    margin-right: 20px;
 }
 
 .profile-form__ttl {

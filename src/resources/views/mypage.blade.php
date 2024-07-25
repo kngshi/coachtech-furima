@@ -41,9 +41,13 @@
     </div>
 @endif
 <div class="mypage__heading">
+    @if ($profile)
     <div class="mypage__img">
         <img src="{{ $profile->img_url }}" alt="プロフィール画像" class="profile-img">
     </div>
+    @else
+    <div class="profile-img" style="background-color: #f0f0f0;"></div>
+    @endif
     @auth
     <div class="mypage__user">{{Auth::user()->name}}</div>
     @endauth

@@ -43,11 +43,19 @@
         <form action="{{ route('store.profile') }}" method="POST" enctype="multipart/form-data">
         @csrf
             <div class="profile-form__group">
-                <div class="group__img">
-                    <img src="{{ $profile->img_url }}" alt="プロフィール画像" class="profile-image">
-                    <input type="file" name="img_url" id="img_url" class="img-select"required>
-                    <button type="button" class="custom-file-button">画像を選択する</button>
-                    <span id="file-name"></span>
+                <div class="group-img">
+                    @if ($profile)
+                    <div class="img-item">
+                        <img src="{{ $profile->img_url }}" alt="プロフィール画像" class="profile-img">
+                    </div>
+                    @else
+                    <div class="profile-img__default"></div>
+                    @endif
+                    <div class="img-item">
+                        <input type="file" name="img_url" id="img_url" class="img-select"required>
+                        <button type="button" class="custom-file-button">画像を選択する</button>
+                        <span id="file-name"></span>
+                    </div>
                 </div>
             </div>
             <div class="profile-form__group">
@@ -56,7 +64,11 @@
                         <label class="profile-form__label">郵便番号</label>
                     </div>
                     <div class="profile-form__inputs">
+                        @if ($profile)
                         <input type="text" name="postcode" id="postcode" class="form-input" autocomplete="off" value="{{ old('postcode', $profile->postcode) }}" required>
+                        @else
+                        <input type="text" name="postcode" id="postcode" class="form-input" autocomplete="off" value="{{ old('postcode') }}" required>
+                        @endif
                     </div>
                 </div>
                 <div class="profile-form__group">
@@ -64,7 +76,11 @@
                         <label class="profile-form__label">住所</label>
                     </div>
                     <div class="profile-form__inputs">
+                        @if ($profile)
                         <input type="text" name="address" id="address" class="form-input" autocomplete="off" value="{{ old('address', $profile->address) }}" required>
+                        @else
+                        <input type="text" name="address" id="address" class="form-input" autocomplete="off" value="{{ old('address') }}" required>
+                        @endif
                     </div>
                 </div>
                 <div class="profile-form__group">
@@ -72,7 +88,11 @@
                         <label class="profile-form__label">建物名</label>
                     </div>
                     <div class="profile-form__inputs">
+                        @if ($profile)
                         <input type="text" name="building" id="building" class="form-input" autocomplete="off" value="{{ old('building', $profile->building) }}">
+                        @else
+                        <input type="text" name="building" id="building" class="form-input" autocomplete="off" value="{{ old('building') }}">
+                        @endif
                     </div>
                 </div>
             </div>
