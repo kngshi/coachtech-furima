@@ -21,7 +21,9 @@ class ItemController extends Controller
 
         $likedItems = Like::where('user_id', $user_id)->with('item')->get()->pluck('item');
 
-        return view('index', compact('items', 'likedItems'));
+        $categories = Category::all();
+
+        return view('index', compact('items', 'likedItems', 'categories'));
     }
 
     public function itemDetail(Item $item)
