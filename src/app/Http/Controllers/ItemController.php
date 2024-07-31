@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Condition;
 use App\Models\Item;
 use App\Models\SoldItem;
 use App\Models\Like;
@@ -28,6 +29,7 @@ class ItemController extends Controller
 
     public function itemDetail(Item $item)
     {
+        $item->load('categories', 'condition');
         return view('item', compact('item'));
     }
 
@@ -63,8 +65,10 @@ class ItemController extends Controller
     public function createItem()
     {
         $user_id = Auth::id();
+        $categories = Category::all();
+        $conditions = Condition::all();
 
-        return view('sell', compact('user_id'));
+        return view('sell', compact('user_id','categories','conditions'));
     }
 
     public function storeItem(Request $request)
@@ -78,6 +82,7 @@ class ItemController extends Controller
             'img_url' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'user_id' => 'required',
             'condition_id' => 'required|integer',
+            // category_idを一旦抜いた状態で実装（仕様の確認中）
         ]);
 
         if ($request->hasFile('img_url')) {
@@ -97,9 +102,10 @@ class ItemController extends Controller
             'condition_id' => $validatedData['condition_id'],
         ]);
 
-        if ($request->has('category_id')) {
-            $item->categories()->sync([$request->input('category_id')]);
-        }
+        // カテゴリの関連付け
+        if ($request->filled('categories')) {
+        $item->categories()->sync($request->categories);
+    }
 
         return redirect()->route('mypage', compact('user_id'))
             ->with('success', '商品を出品しました。');

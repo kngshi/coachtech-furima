@@ -62,7 +62,21 @@
 .form-input {
     width: 450px;
     height: 30px;
+}
 
+.form-input__category {
+    width: 450px;
+    height: 80px;
+}
+
+.form-input__textarea {
+    width: 450px;
+    height: 100px;
+}
+
+.form-input::placeholder {
+    color: black;
+    opacity: 1;
 }
 
 .sell-button {

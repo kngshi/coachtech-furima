@@ -103,7 +103,11 @@
                 <table class="item-table">
                     <tr class="item-table__row">
                         <th class="item-table__header">カテゴリー</th>
-                        <td class="item-table__category">表示</td>
+                        <td class="item-table__category">
+                        @foreach($item->categories as $category)
+                            {{ $category->name }}@if(!$loop->last), @endif
+                        @endforeach
+                        </td>
                     </tr>
                     <tr class="item-table__row">
                         <th class="item-table__header">商品の状態</th>
