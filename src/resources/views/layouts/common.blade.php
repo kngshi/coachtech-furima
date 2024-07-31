@@ -13,7 +13,11 @@
     </head>
     <body>
         <header class="header">
+        @if(request()->is('sell') || request()->is('purchase/address/*'))
             @yield('link')
+        @else
+            @include('components.header')
+        @endif
         </header>
         <main>
             @yield('content')

@@ -1,34 +1,3 @@
-.header-flex {
-    display: flex;
-    justify-content: space-between;
-}
-
-.header-logo {
-    padding-bottom: 10px;
-    padding-left: 20px;
-}
-
-.flex-link {
-    margin: 20px 15px;
-}
-
-.header-link {
-    color: white;
-    font-size: 18px;
-    text-decoration: none;
-    margin: 20px 20px;
-}
-
-.header-button {
-    background-color: white;
-    color: black;
-    font-size: 18px;
-    text-decoration: none;
-    padding: 10px 20px;
-    margin: auto 15px;
-    border-radius: 5px;
-}
-
 .flash-message__success {
     padding: 15px 30px;
     margin-bottom: 10px;

@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="{{ asset('css/auth/register.css') }}">
     </head>
     <header class="header">
-        <img src="img/logo.svg" alt="coachtech" width="280" height="80">
+        <img src="/img/logo.svg" alt="coachtech" width="280" height="80">
             @yield('link')
     </header>
     <div class="register-ttl">
