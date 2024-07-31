@@ -52,3 +52,25 @@
     text-align: center;
     color: blue;
 }
+
+
+@media screen and (max-width: 480px) {
+
+    .header{
+        height: 70px;
+    }
+
+    .auth-container {
+        width: 70%;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .login-ttl {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 40px;
+    }
+
+}

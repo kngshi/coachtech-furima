@@ -28,3 +28,30 @@
     margin: auto 20px;
     border-radius: 5px;
 }
+
+@media screen and (max-width: 480px) {
+
+    .header-flex {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-logo {
+        width: 230px;
+        height: 60px;
+    }
+
+    .flex-link {
+        margin: 0px auto;
+    }
+
+    .header-link {
+        font-size: 16px;
+        margin: 0px 15px;
+    }
+
+    .header-button {
+        font-size: 16px;
+        padding: 8px 20px;
+    }
+}
