@@ -74,19 +74,26 @@
                 @endif
             @else
                 <a href="{{ route('login') }}">
-                    <i class="fa-regular fa-star fa-2xl"></i>
+                    <button type="submit" class="favicon-button">
+                        <i class="fa-regular fa-star fa-2xl"></i>
+                    </button>
                 </a>
                 <p class="favicon-count">{{ $item->likes->count() }}</p>
             @endauth
             </div>
-            @auth
             <div class="favicon-group__comment">
+            @auth
                 <a href="{{ route('create.comment', $item->id) }}">
+                        <i class="fa-regular fa-comment fa-2xl" style="color: black;"></i>
+                </a>
+                <p class="favicon-count__comment">{{ $item->comments ? $item->comments->count() : 0 }}</p>
+            @else
+                <a href="{{ route('login') }}">
                     <i class="fa-regular fa-comment fa-2xl" style="color: black;"></i>
                 </a>
-                <p class="favicon-count">{{ $item->comments ? $item->comments->count() : 0 }}</p>
-            </div>
+                <p class="favicon-count__comment">{{ $item->comments ? $item->comments->count() : 0 }}</p>
             @endauth
+            </div>
         </div>
         <form action="{{ route('post.detail') }}" method="POST">
             @csrf

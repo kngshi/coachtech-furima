@@ -110,7 +110,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 10px;
     margin-left: 20px;
 }
 
@@ -118,10 +117,13 @@
     margin-top: 10px;
 }
 
+.favicon-count__comment {
+    margin-top: 10px;
+}
+
 .comment-section {
     display: flex;
     flex-direction: column;
-
 }
 
 .comment-list {
@@ -130,7 +132,6 @@
 
 .comment-item {
     padding:5px 0;
-    
 }
 
 .flex-item {
@@ -158,6 +159,19 @@
     box-shadow: 1px 1px 1px 1px gray;
     border-radius: 3px;
     width: 320px;
+}
+
+.delete-button {
+    color: white;
+    background-color: blue;
+    border: none;
+    border-radius: 3px;
+    padding: 3px 10px;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: rgb(28, 77, 226);
 }
 
 .comment-form__group {

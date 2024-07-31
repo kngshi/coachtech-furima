@@ -81,8 +81,10 @@
             @endauth
             </div>
             <div class="favicon-group__comment">
-                <i class="fa-regular fa-comment fa-2xl"></i>
-                <p class="favicon-count">{{ $item->comments ? $item->comments->count() : 0 }}</p>
+                <div class="favicon-comment">
+                    <i class="fa-regular fa-comment fa-2xl"></i>
+                </div>
+                <p class="favicon-count__comment">{{ $item->comments ? $item->comments->count() : 0 }}</p>
             </div>
         </div>
         <div class="comment-section">
