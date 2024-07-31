@@ -37,7 +37,11 @@
 <div class="tab">
     <ul class="tab-menu">
         <li class="tab-menu__item active">おすすめ</li>
+        @if(Auth::check())
         <li class="tab-menu__item">マイリスト</li>
+        @else
+        <a href="{{ route('login') }}" class="tab-menu__item">マイリスト</a>
+        @endif
     </ul>
     <div class="tab-content">
         <div class="tab-content__item show">
