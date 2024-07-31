@@ -1,3 +1,18 @@
+.header-logo {
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.auth-container {
+    width: 60%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.x-auth-card {
+    width: 100%;
+}
+
 .login-ttl{
     font-size: 28px;
     font-weight: bold;
@@ -20,7 +35,6 @@
     display: flex;
     align-items: center;
     margin-top: 50px;
-
 }
 
 .login-button {

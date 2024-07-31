@@ -1,10 +1,24 @@
+.header-logo {
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+.auth-container {
+    width: 60%;
+    margin: 0 auto;
+    padding:0 20px;
+}
+
+.x-auth-card {
+    width: 100%;
+}
+
 .register-ttl {
     font-size: 28px;
     font-weight: bold;
     text-align: center;
     margin-top: 40px;
 }
-
 
 .name-label {
     font-size: 18px;
@@ -19,7 +33,6 @@
 .password-label {
     font-size: 18px;
     font-weight: bold;
-    margin-top: 40px;
 }
 
 .register-button {
@@ -27,6 +40,7 @@
     background-color: #FF6347;
     font-size: 18px;
     padding: 16px;
+    margin-top: 50px;
     width: 100%;
     border-radius: 5px;
     text-align: center;
