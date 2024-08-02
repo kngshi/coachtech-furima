@@ -59,6 +59,12 @@
     padding-bottom: 15px;
 }
 
+.profile-form__postcode,
+.profile-form__address,
+.profile-form__building {
+    padding-bottom: 5px;
+}
+
 .img-select {
     display: none;
     border: solid 1px black;
@@ -105,4 +111,33 @@
 
 .profile-update__button:hover {
     background-color: red;
+}
+
+@media screen and (max-width: 480px) {
+
+    .profile-img {
+            margin-left: 20px;
+        }
+
+    .profile-img__default {
+        margin-left: 20px;
+    }
+
+    .profile-form__group {
+        margin:0 auto;
+    }
+
+    .profile-form__label {
+        margin: 0px 20px;
+    }
+
+    .form-input{
+        width: 350px;
+        margin:0 20px;
+    }
+
+    .profile-update__button {
+        width: 350px;
+        margin:0 20px;
+    }
 }

@@ -29,6 +29,23 @@
     border-radius: 5px;
 }
 
+@media screen and (max-width: 768px) {
+
+    .flex-link {
+        margin: 20px 5px;
+    }
+
+    .header-link {
+        font-size: 18px;
+        margin: 0px 10px;
+    }
+
+    .header-button {
+        font-size: 16px;
+        padding: 8px 20px;
+    }
+}
+
 @media screen and (max-width: 480px) {
 
     .header-flex {

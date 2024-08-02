@@ -92,3 +92,55 @@
     width: 150px;
     margin: 30px;
 }
+
+@media screen and (max-width: 768px) {
+
+    .items-index {
+        margin: 10px 30px;
+        padding: 0 auto;
+    }
+
+    .img-box {
+        height: 200px;
+        width: 200px;
+        margin: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .profile-img {
+        height: 80px;
+        width: 80px;
+    }
+
+    .mypage__user {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .profile-link {
+        font-size: 14px;
+        padding: 10px 15px;
+        margin-top: 5px;
+    }
+
+    .tab-menu__item {
+        font-size: 16px;
+        padding-left: 20px;
+    }
+
+    .tab-content__item {
+        margin-top: 5px;
+    }
+
+    .items-index {
+        margin:0 5px;
+    }
+
+    .img-box {
+        height: 130px;
+        width: 130px;
+        margin: 2px;
+    }
+}

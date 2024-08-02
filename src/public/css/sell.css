@@ -6,6 +6,7 @@
 
 .sell-form__group {
     padding-bottom: 30px;
+    width: 450px;
 }
 
 .sell-form__ttl {
@@ -29,10 +30,6 @@
     text-align: center;
 }
 
-.img-select {
-    display: none;
-}
-
 .custom-file-button {
     font-size: 16px;
     font-weight: bold;
@@ -49,15 +46,14 @@
     cursor: pointer;
     color: white;
     background-color: #FF6347;
-
 }
 
 .img-select {
+    display: none;
     border: solid 1px black;
     width: 450px;
     height: 100px;
 }
-
 
 .form-input {
     width: 450px;
@@ -77,6 +73,7 @@
 .form-input::placeholder {
     color: black;
     opacity: 1;
+    padding-left: 3px;
 }
 
 .sell-button {
@@ -89,4 +86,46 @@
     border-radius: 5px;
     border: none;
     text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        height: 70px;
+    }
+
+    .sell-form__inner {
+        width: 450px;
+        margin: 0 auto;
+    }
+
+    .sell-form__select,
+    .sell-form__group,
+    .img-select,
+    .form-input,
+    .form-input__category,
+    .form-input__textarea,
+    .sell-button {
+        width: 450px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .header {
+        height: 70px;
+    }
+
+    .sell-form__inner {
+        width:380px;
+        margin: 0 auto;
+    }
+
+    .sell-form__select,
+    .sell-form__group,
+    .img-select,
+    .form-input,
+    .form-input__category,
+    .form-input__textarea,
+    .sell-button {
+        width: 350px;
+    }
 }

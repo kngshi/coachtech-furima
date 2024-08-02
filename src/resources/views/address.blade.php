@@ -18,7 +18,7 @@
             @method('PUT')
             <div class="address-form__group">
                 <div class="group">
-                    <div class="address-form__img">
+                    <div class="address-form__postcode">
                         <label class="address-form__label">郵便番号</label>
                     </div>
                     <div class="address-form__inputs">
@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="group">
-                    <div class="address-form__img">
+                    <div class="address-form__address">
                         <label class="address-form__label">住所</label>
                     </div>
                     <div class="address-form__inputs">
@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div class="group">
-                    <div class="address-form__condition">
+                    <div class="address-form__building">
                         <label class="address-form__label">建物名</label>
                     </div>
                     <div class="address-form__inputs">
