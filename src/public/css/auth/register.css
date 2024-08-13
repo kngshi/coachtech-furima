@@ -20,11 +20,6 @@
     margin-top: 40px;
 }
 
-.name-label {
-    font-size: 18px;
-    font-weight: bold;
-}
-
 .email-label {
     font-size: 18px;
     font-weight: bold;
@@ -33,6 +28,7 @@
 .password-label {
     font-size: 18px;
     font-weight: bold;
+    margin-top: 40px;
 }
 
 .register-button {
