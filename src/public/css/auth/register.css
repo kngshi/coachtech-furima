@@ -56,13 +56,9 @@
 
     .auth-container {
         width: 70%;
-        margin: 0 auto;
     }
 
     .register-ttl {
         font-size: 24px;
-        font-weight: bold;
-        text-align: center;
-        margin-top: 40px;
     }
 }
