@@ -51,10 +51,10 @@
             <div class="sell-form__inputs">
                 <select name="condition_id" id="condition_id" class="form-input">
                 <option value="">選択してください</option>
-            @foreach($conditions as $condition)
-                <option value="{{ $condition->id }}">{{ $condition->condition }}</option>
-            @endforeach
-        </select>
+                @foreach($conditions as $condition)
+                    <option value="{{ $condition->id }}">{{ $condition->condition }}</option>
+                @endforeach
+                </select>
             </div>
         </div>
         <div class="sell-form__group">
@@ -70,6 +70,12 @@
             </div>
             <div class="sell-form__inputs">
                 <input type="textarea" name="description" id="description" class="form-input__textarea" autocomplete="off" required>
+            </div>
+            <div class="sell-form__group--item">
+                <label class="sell-form__label">ブランド名</label>
+            </div>
+            <div class="sell-form__inputs">
+                <input type="text" name="brand" id="brand" class="form-input" autocomplete="off" >
             </div>
         </div>
         <div class="sell-form__group">

@@ -20,7 +20,8 @@
         <img src="{{ $item->img_url }}" alt="商品画像" class="img-box">
     </div>
     <div class="grid-right">
-        <h1 class="item__name">{{ $item->name }}</h1>
+        <div class="item__name">{{ $item->name }}</div>
+        <div class="item__brand">ブランド名：{{ $item->brand }}</div>
         <div class="item__price">¥{{ number_format($item->price) }}</div>
         <div class="favicon-group">
             <div class="favicon-group__star">

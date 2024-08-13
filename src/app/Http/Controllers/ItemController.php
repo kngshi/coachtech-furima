@@ -77,6 +77,7 @@ class ItemController extends Controller
 
         $validatedData = $request->validate([
             'name' => 'required|string|max:191',
+            'brand' => 'required|string|max:191',
             'price' => 'required|integer',
             'description' => 'required|string|max:400',
             'img_url' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -95,6 +96,7 @@ class ItemController extends Controller
 
         $item = Item::create([
             'name' => $validatedData['name'],
+            'brand' => $validatedData['brand'],
             'price' => $validatedData['price'],
             'description' => $validatedData['description'],
             'img_url' => $imageUrl,
