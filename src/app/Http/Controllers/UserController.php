@@ -40,10 +40,15 @@ class UserController extends Controller
 
         $validatedData = $request->validate([
             'img_url' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name' => 'required|string|max:191',
             'postcode' => 'required|string|max:191',
             'address' => 'required|string|max:191',
             'building' => 'nullable|string|max:191',
         ]);
+
+        if ($request->has('name')) {
+        Auth::user()->update(['name' => $request->input('name')]);
+        }
 
         if ($request->hasFile('img_url')) {
             $image = $request->file('img_url');
@@ -63,7 +68,7 @@ class UserController extends Controller
             ]
         );
 
-        return redirect()->route('store.profile', compact('user_id'))
+        return redirect()->route('mypage', compact('user_id'))
         ->with('success', 'プロフィールを更新しました。');
     }
 }

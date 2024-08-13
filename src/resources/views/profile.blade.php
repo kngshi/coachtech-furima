@@ -32,41 +32,47 @@
                 </div>
             </div>
             <div class="profile-form__group">
-                <div class="profile-form__group">
-                    <div class="profile-form__postcode">
-                        <label class="profile-form__label">郵便番号</label>
-                    </div>
-                    <div class="profile-form__inputs">
-                        @if ($profile)
-                        <input type="text" name="postcode" id="postcode" class="form-input" autocomplete="off" value="{{ old('postcode', $profile->postcode) }}" required>
-                        @else
-                        <input type="text" name="postcode" id="postcode" class="form-input" autocomplete="off" value="{{ old('postcode') }}" required>
-                        @endif
-                    </div>
+                <div class="profile-form__name">
+                    <label class="profile-form__label">ユーザー名</label>
                 </div>
-                <div class="profile-form__group">
-                    <div class="profile-form__address">
-                        <label class="profile-form__label">住所</label>
-                    </div>
-                    <div class="profile-form__inputs">
-                        @if ($profile)
-                        <input type="text" name="address" id="address" class="form-input" autocomplete="off" value="{{ old('address', $profile->address) }}" required>
-                        @else
-                        <input type="text" name="address" id="address" class="form-input" autocomplete="off" value="{{ old('address') }}" required>
-                        @endif
-                    </div>
+                <div class="profile-form__inputs">
+                    <input type="text" name="name" id="name" class="form-input" autocomplete="off" value="{{ old('name', Auth::user()->name) }}">
                 </div>
-                <div class="profile-form__group">
-                    <div class="profile-form__building">
-                        <label class="profile-form__label">建物名</label>
-                    </div>
-                    <div class="profile-form__inputs">
-                        @if ($profile)
-                        <input type="text" name="building" id="building" class="form-input" autocomplete="off" value="{{ old('building', $profile->building) }}">
-                        @else
-                        <input type="text" name="building" id="building" class="form-input" autocomplete="off" value="{{ old('building') }}">
-                        @endif
-                    </div>
+            </div>
+            <div class="profile-form__group">
+                <div class="profile-form__postcode">
+                    <label class="profile-form__label">郵便番号</label>
+                </div>
+                <div class="profile-form__inputs">
+                    @if ($profile)
+                    <input type="text" name="postcode" id="postcode" class="form-input" autocomplete="off" value="{{ old('postcode', $profile->postcode) }}" required>
+                    @else
+                    <input type="text" name="postcode" id="postcode" class="form-input" autocomplete="off" value="{{ old('postcode') }}" required>
+                    @endif
+                </div>
+            </div>
+            <div class="profile-form__group">
+                <div class="profile-form__address">
+                    <label class="profile-form__label">住所</label>
+                </div>
+                <div class="profile-form__inputs">
+                    @if ($profile)
+                    <input type="text" name="address" id="address" class="form-input" autocomplete="off" value="{{ old('address', $profile->address) }}" required>
+                    @else
+                    <input type="text" name="address" id="address" class="form-input" autocomplete="off" value="{{ old('address') }}" required>
+                    @endif
+                </div>
+            </div>
+            <div class="profile-form__group">
+                <div class="profile-form__building">
+                    <label class="profile-form__label">建物名</label>
+                </div>
+                <div class="profile-form__inputs">
+                    @if ($profile)
+                    <input type="text" name="building" id="building" class="form-input" autocomplete="off" value="{{ old('building', $profile->building) }}">
+                    @else
+                    <input type="text" name="building" id="building" class="form-input" autocomplete="off" value="{{ old('building') }}">
+                    @endif
                 </div>
             </div>
             <input type="hidden" name="user_id" value="{{ $user_id }}">

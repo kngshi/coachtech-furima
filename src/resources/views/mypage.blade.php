@@ -19,7 +19,7 @@
     <div class="profile-img" style="background-color: #f0f0f0;"></div>
     @endif
     @auth
-    <div class="mypage__user">{{Auth::user()->name}}</div>
+    <div class="mypage__user">{{ Auth::user()->name ? Auth::user()->name : 'ユーザー名_未設定' }}</div>
     @endauth
     <a class="profile-link" href="{{ route('edit.profile') }}">プロフィールを編集</a>
 </div>
