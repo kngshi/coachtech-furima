@@ -17,6 +17,7 @@ class CreateSoldItemsTable extends Migration
             $table->id();
             $table->foreignId('item_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->tinyInteger('payment_method')->default(0);
             $table->timestamps();
         });
     }

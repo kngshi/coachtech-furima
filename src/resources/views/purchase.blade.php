@@ -5,6 +5,11 @@
 @endsection
 
 @section('content')
+@if (session('success'))
+    <div class="flash-message__success">
+        {{ session('success') }}
+    </div>
+@endif
 <div class="grid-container">
     <div class="grid-left">
         <div class="item-information__group">
@@ -18,7 +23,7 @@
         </div>
         <div class="purchase__group">
             <div class="payment-method">支払い方法</div>
-            <a class="payment-method__link" href="">変更する</a>
+            <a class="payment-method__link" href="{{ route('payment.method.edit', ['item' => $item->id]) }}">変更する</a>
         </div>
         <div class="purchase__group">
             <div class="shipping-address">配送先</div>
@@ -38,13 +43,13 @@
                 </tr>
                 <tr class="item-table__row--payment">
                     <th class="item-table__header">支払い方法</th>
-                    <td class="item-table__payment-method">コンビニ払い</td>
+                    <td class="item-table__payment-method">クレジットカード</td>
                 </tr>
             </table>
         </div>
         <form action="{{ route('purchase.item', ['item' => $item->id]) }}" method="POST">
         @csrf
-        <button type="submit" class="purchase__button">購入する</button>
+            <button type="submit" class="purchase__button">購入する</button>
         </form>
     </div>
 </div>

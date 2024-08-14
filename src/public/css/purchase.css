@@ -1,3 +1,12 @@
+.flash-message__success {
+    padding: 15px 30px;
+    margin-bottom: 10px;
+    border-color: #badbcc;
+    background-color: #d1e7dd;
+    color: #0f5132;
+    font-size: 20px;
+}
+
 .grid-container {
     margin-top: 70px;
     display: grid;
@@ -73,9 +82,10 @@
 
 .item-group {
     height: 300px;
-    width: 350px;
+    width: 380px;
     font-size: 18px;
     border: solid 1px black;
+    margin: 0 20px;
 }
 
 .item-table__row--price {
@@ -104,8 +114,10 @@
     background-color: #FF6347;
     font-size: 18px;
     margin-top: 50px;
+    margin-right:20px;
+    margin-left: 20px;
     padding: 10px;
-    width: 350px;
+    width: 380px;
     border-radius: 5px;
     border: none;
     text-align: center;

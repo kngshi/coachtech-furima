@@ -11,6 +11,9 @@ use App\Models\SoldItem;
 use App\Models\Like;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
+use Stripe\Stripe;
+use Stripe\Checkout\Session;
 
 class ItemController extends Controller
 {
@@ -49,12 +52,38 @@ class ItemController extends Controller
     {
         $user_id = Auth::id();
 
-        $soldItem = SoldItem::create([
+        $paymentMethod = session('payment_method',0);
+
+        $soldItem = SoldItem::updateOrCreate([
             'user_id' => $user_id,
             'item_id' => $item->id,
+            'payment_method' => $paymentMethod,
+            ]
+        );
+
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        $session = Session::create([
+            'payment_method_types' => ['card'],
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'jpy',
+                    'product_data' => [
+                        'name' => $item->name,
+                    ],
+                    'unit_amount' => $item->price, 
+                ],
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => route('purchase.complete', ['item' => $item->id]),
         ]);
 
-        return redirect()->route('purchase.complete', ['item' => $item->id]);
+        if ($paymentMethod == 0) {
+            return redirect()->route('checkout', ['session_id' => $session->id]);
+        } else {
+            return redirect()->route('purchase.complete', ['item' => $item->id]);
+        }
     }
 
     public function purchaseComplete(Item $item)

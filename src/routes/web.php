@@ -6,6 +6,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\PaymentMethodController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,10 +33,21 @@ Route::delete('/item/{item}/unlike', [LikeController::class, 'unlike'])->name('i
 Route::post('/purchase', [ItemController::class, 'postDetail'])->name('post.detail');
 
 // 購入ページの表示
-Route::get('/purchase/{item}', [ItemController::class, 'purchaseInformation'])->name('purchase.information');
+Route::get('/purchase/{item}', [ItemController::class, 'purchaseInformation'])->name('purchase.info');
 
 //購入ページから、購入確定のアクション
 Route::post('/purchase/{item}', [ItemController::class, 'purchaseItem'])->name('purchase.item');
+
+// 支払い方法変更ページ
+Route::get('/payment-method/edit', [PaymentMethodController::class, 'edit'])->name('payment.method.edit');
+
+// 支払い方法の更新処理
+Route::post('/payment-method/update', [PaymentMethodController::class, 'update'])->name('payment.method.update');
+
+// Stripe Checkoutの開始
+Route::get('/checkout/{session_id}', function ($session_id) {
+    return view('checkout', ['session_id' => $session_id]);
+})->name('checkout');
 
 //購入完了ページの表示
 Route::get('/purchase/{item}/complete', [ItemController::class, 'purchaseComplete'])->name('purchase.complete');
@@ -55,6 +67,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/sell', [ItemController::class, 'storeItem'])->name('sell.store');
 
     Route::get('/mypage', [UserController::class, 'getUser'])->name('mypage');
+
     //プロフィール変更ページ表示
     Route::get('/mypage/profile', [UserController::class, 'editProfile'])->name('edit.profile');
     Route::post('/mypage/profile', [UserController::class, 'storeProfile'])->name('store.profile');
