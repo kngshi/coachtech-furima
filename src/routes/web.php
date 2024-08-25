@@ -7,6 +7,8 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PaymentMethodController;
+use App\Http\Controllers\AdminController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,51 +23,39 @@ use App\Http\Controllers\PaymentMethodController;
 
 require __DIR__.'/auth.php';
 
-// トップページ
 Route::get('/', [ItemController::class, 'index'])->name('index');
-
-// 商品詳細ページ
 Route::get('/item/{item}', [ItemController::class, 'itemDetail'])->name('item.detail');
-Route::post('/item/{item}/like', [LikeController::class, 'like'])->name('item.like');
-Route::delete('/item/{item}/unlike', [LikeController::class, 'unlike'])->name('item.unlike');
-
-//詳細ページの「購入する」ボタンから、購入ページ(/purchase/:item_id)への遷移(データ送信)
-Route::post('/purchase', [ItemController::class, 'postDetail'])->name('post.detail');
-
-// 購入ページの表示
-Route::get('/purchase/{item}', [ItemController::class, 'purchaseInformation'])->name('purchase.info');
-
-//購入ページから、購入確定のアクション
-Route::post('/purchase/{item}', [ItemController::class, 'purchaseItem'])->name('purchase.item');
-
-// 支払い方法変更ページ
-Route::get('/payment-method/edit', [PaymentMethodController::class, 'edit'])->name('payment.method.edit');
-
-// 支払い方法の更新処理
-Route::post('/payment-method/update', [PaymentMethodController::class, 'update'])->name('payment.method.update');
-
-// Stripe Checkoutの開始
-Route::get('/checkout/{session_id}', function ($session_id) {
-    return view('checkout', ['session_id' => $session_id]);
-})->name('checkout');
-
-//購入完了ページの表示
-Route::get('/purchase/{item}/complete', [ItemController::class, 'purchaseComplete'])->name('purchase.complete');
-
-//住所変更のページ表示
-Route::get('/purchase/address/{item}', [ProfileController::class, 'editAddress'])->name('edit.address');
-
-//住所変更のデータ送信
-Route::put('/purchase/address/{item}', [ProfileController::class, 'updateAddress'])->name('update.address');
-
 
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('/purchase/{item}', [ItemController::class, 'purchaseInformation'])->name('item.purchase');
+    Route::post('/item/{item}/like', [LikeController::class, 'like'])->name('item.like');
+    Route::delete('/item/{item}/unlike', [LikeController::class, 'unlike'])->name('item.unlike');
 
+    Route::post('/purchase', [ItemController::class, 'postDetail'])->name('post.detail');
+    Route::get('/purchase/{item}', [ItemController::class, 'purchaseInformation'])->name('purchase.info');
+    Route::post('/purchase/{item}', [ItemController::class, 'purchaseItem'])->name('purchase.item');
+
+    // 支払い方法変更ページ
+    Route::get('/payment-method/edit', [PaymentMethodController::class, 'edit'])->name('payment.method.edit');
+    Route::post('/payment-method/update', [PaymentMethodController::class, 'update'])->name('payment.method.update');
+
+    // Stripe Checkoutの開始
+    Route::get('/checkout/{session_id}', function ($session_id) {
+        return view('checkout', ['session_id' => $session_id]);
+    })->name('checkout');
+
+    //購入完了ページの表示
+    Route::get('/purchase/{item}/complete', [ItemController::class, 'purchaseComplete'])->name('purchase.complete');
+
+    //住所変更ページ
+    Route::get('/purchase/address/{item}', [ProfileController::class, 'editAddress'])->name('edit.address');
+    Route::put('/purchase/address/{item}', [ProfileController::class, 'updateAddress'])->name('update.address');
+
+    //出品ページ
     Route::get('/sell', [ItemController::class, 'createItem'])->name('sell.create');
     Route::post('/sell', [ItemController::class, 'storeItem'])->name('sell.store');
 
+    //マイページ
     Route::get('/mypage', [UserController::class, 'getUser'])->name('mypage');
 
     //プロフィール変更ページ表示
@@ -76,5 +66,21 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/item/{item}/comment', [CommentController::class, 'createComment'])->name('create.comment');
     Route::post('/item/{item}/comment', [CommentController::class, 'storeComment'])->name('store.comment');
     Route::delete('/item/{item}/comment/{comment}', [CommentController::class, 'destroyComment'])->name('destroy.comment');
+});
 
+
+// 管理者用ルート
+Route::middleware(['auth'])->prefix('admin')->group(function () {
+    Route::get('/', [AdminController::class, 'admin'])->name('admin');
+    Route::get('/user-index', [AdminController::class, 'userIndex'])->name('admin.user-index');
+    Route::get('/user-index/{id}', [AdminController::class, 'show'])->name('admin.show');
+    Route::delete('/user-index/{id}', [AdminController::class, 'destroy'])->name('admin.delete');
+    Route::get('/notify', [AdminController::class, 'notifyMail'])->name('admin.notify');
+    Route::post('/notify', [AdminController::class, 'send'])->name('admin.notify.send');
+
+    // コメント追加・削除機能
+    Route::get('/item/{item}/comment', [CommentController::class, 'createComment'])->name('create.comment');
+    Route::post('/item/{item}/comment', [CommentController::class, 'storeComment'])->name('store.comment');
+    Route::delete('/item/{item}/comment/{comment}', [CommentController::class, 'destroyComment'])->name('destroy.comment');
+    Route::get('comments', [AdminController::class, 'index'])->name('admin.comments');
 });

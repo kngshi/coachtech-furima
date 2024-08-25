@@ -71,7 +71,7 @@
                         <div class="comment-group">
                             <div class="comment-left">{{ $comment->comment }}</div>
                             <div class="comment-right">
-                            @if($comment->user_id === Auth::id())
+                            @if($comment->user_id === Auth::id() || Auth::user()->role === 1)
                                 <form action="{{ route('destroy.comment', ['item' => $item->id, 'comment' => $comment->id]) }}" method="POST" onsubmit="return confirm('本当に削除しますか？');">
                                     @csrf
                                     @method('DELETE')

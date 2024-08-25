@@ -40,7 +40,7 @@ class ItemController extends Controller
     {
         $item = Item::findOrFail($request->item_id);
 
-        return redirect()->route('item.purchase', ['item' => $request->item_id]);
+        return redirect()->route('purchase.item', ['item' => $request->item_id]);
     }
 
     public function purchaseInformation(Item $item)

@@ -67,10 +67,8 @@ class User extends Authenticatable
         return $this->belongsToMany(Item::class, 'comments')->withPivot('comment');
     }
 
-    // 購入した商品
     public function purchasedItems()
     {
         return $this->belongsToMany(Item::class, 'sold_items');
     }
-
 }

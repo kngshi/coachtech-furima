@@ -36,7 +36,9 @@ class CommentController extends Controller
 
     public function destroyComment(Item $item, Comment $comment)
     {
-        if ($comment->user_id !== Auth::id()) {
+        $user = Auth::user();
+        
+        if ($comment->user_id !== $user->id && $user->role !== 1) {
             return redirect()->route('destroy.comment', $item->id)->with('fail', '削除権限がありません。');
         }
 
@@ -44,4 +46,5 @@ class CommentController extends Controller
 
         return redirect()->route('create.comment', $item->id)->with('delete', 'コメントが削除されました。');
     }
+
 }
