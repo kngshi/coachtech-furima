@@ -47,7 +47,7 @@ class UserController extends Controller
         ]);
 
         if ($request->has('name')) {
-        Auth::user()->update(['name' => $request->input('name')]);
+            Auth::user()->update(['name' => $request->input('name')]);
         }
 
         if ($request->hasFile('img_url')) {

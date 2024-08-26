@@ -10,6 +10,16 @@
         {{ session('success') }}
     </div>
 @endif
+@if (session('message'))
+    <div class="flash-message__success">
+        {{ session('message') }}
+    </div>
+@endif
+@if (session('error'))
+    <div class="flash-message__error">
+        {{ session('error') }}
+    </div>
+@endif
 <div class="grid-container">
     <div class="grid-left">
         <div class="item-information__group">
@@ -43,7 +53,15 @@
                 </tr>
                 <tr class="item-table__row--payment">
                     <th class="item-table__header">支払い方法</th>
-                    <td class="item-table__payment-method">クレジットカード</td>
+                    <td class="item-table__payment-method">
+                    @if ($paymentMethod->id == 1)
+                        クレジットカード
+                    @elseif ($paymentMethod->id == 2)
+                        コンビニ払い
+                    @elseif ($paymentMethod->id == 3)
+                        銀行振込
+                    @endif
+                </td>
                 </tr>
             </table>
         </div>

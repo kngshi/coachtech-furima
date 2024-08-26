@@ -9,11 +9,16 @@ class SoldItem extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'item_id','payment_method'];
+    protected $fillable = ['user_id', 'item_id','payment_method_id'];
 
     public function item()
     {
         return $this->belongsTo(Item::class);
+    }
+
+    public function paymentMethod()
+    {
+        return $this->belongsTo(PaymentMethod::class);
     }
 
 }

@@ -31,13 +31,18 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/item/{item}/like', [LikeController::class, 'like'])->name('item.like');
     Route::delete('/item/{item}/unlike', [LikeController::class, 'unlike'])->name('item.unlike');
 
+    //購入ページ
     Route::post('/purchase', [ItemController::class, 'postDetail'])->name('post.detail');
     Route::get('/purchase/{item}', [ItemController::class, 'purchaseInformation'])->name('purchase.info');
     Route::post('/purchase/{item}', [ItemController::class, 'purchaseItem'])->name('purchase.item');
 
     // 支払い方法変更ページ
-    Route::get('/payment-method/edit', [PaymentMethodController::class, 'edit'])->name('payment.method.edit');
-    Route::post('/payment-method/update', [PaymentMethodController::class, 'update'])->name('payment.method.update');
+    Route::get('/purchase/{item}/payment-method/edit', [PaymentMethodController::class, 'edit'])->name('payment.method.edit');
+    Route::post('/purchase/{item}/payment-method/update', [PaymentMethodController::class, 'update'])->name('payment.method.update');
+
+    //住所変更ページ
+    Route::get('/purchase/address/{item}', [ProfileController::class, 'editAddress'])->name('edit.address');
+    Route::put('/purchase/address/{item}', [ProfileController::class, 'updateAddress'])->name('update.address');
 
     // Stripe Checkoutの開始
     Route::get('/checkout/{session_id}', function ($session_id) {
@@ -46,10 +51,6 @@ Route::middleware(['auth'])->group(function () {
 
     //購入完了ページの表示
     Route::get('/purchase/{item}/complete', [ItemController::class, 'purchaseComplete'])->name('purchase.complete');
-
-    //住所変更ページ
-    Route::get('/purchase/address/{item}', [ProfileController::class, 'editAddress'])->name('edit.address');
-    Route::put('/purchase/address/{item}', [ProfileController::class, 'updateAddress'])->name('update.address');
 
     //出品ページ
     Route::get('/sell', [ItemController::class, 'createItem'])->name('sell.create');

@@ -9,6 +9,7 @@ use App\Models\Condition;
 use App\Models\Item;
 use App\Models\SoldItem;
 use App\Models\Like;
+use App\Models\PaymentMethod;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
@@ -45,21 +46,56 @@ class ItemController extends Controller
 
     public function purchaseInformation(Item $item)
     {
-        return view('purchase', compact('item'));
+        $user_id = Auth::id();
+
+    // ユーザーが選択した支払い方法を取得
+    $soldItem = SoldItem::where('user_id', $user_id)
+                        ->where('item_id', $item->id)
+                        ->first();
+
+        // 支払い方法が設定されていない場合はデフォルト値を設定
+        if (is_null($soldItem) || is_null($soldItem->payment_method_id)) {
+            $paymentMethod = PaymentMethod::find(1); // クレジットカードをデフォルトに設定
+        } else {
+            $paymentMethod = PaymentMethod::find($soldItem->payment_method_id);
+        }
+
+        return view('purchase', compact('item', 'paymentMethod'));
     }
 
     public function purchaseItem(Request $request, Item $item)
     {
-        $user_id = Auth::id();
+        $user = Auth::user();
 
-        $paymentMethod = session('payment_method',0);
+        $profile = $user->profile;
+
+        if (is_null($profile)) {
+            return redirect()->back()->with('error', '配送先を設定して下さい。');
+        }
+
+        $soldItem = SoldItem::where('user_id', $user_id)
+                        ->where('item_id', $item->id)
+                        ->first();
+
+        $paymentMethodId = $soldItem ? $soldItem->payment_method_id : 1;
+        $paymentMethod = PaymentMethod::find($paymentMethodId);
+
+        if (is_null($soldItem) || is_null($soldItem->payment_method_id)) {
+            $paymentMethod = 1;
+        } else {
+            $paymentMethod = $soldItem->payment_method_id;
+        }
+
+        if (!$paymentMethod) {
+            return back()->withErrors(['message' => '支払い方法が設定されていません。']);
+        }
 
         $soldItem = SoldItem::updateOrCreate([
             'user_id' => $user_id,
             'item_id' => $item->id,
-            'payment_method' => $paymentMethod,
-            ]
-        );
+        ], [
+            'payment_method_id' => $paymentMethod,
+        ]);
 
         Stripe::setApiKey(env('STRIPE_SECRET'));
 
@@ -79,7 +115,7 @@ class ItemController extends Controller
             'success_url' => route('purchase.complete', ['item' => $item->id]),
         ]);
 
-        if ($paymentMethod == 0) {
+        if ($paymentMethod == 1) {
             return redirect()->route('checkout', ['session_id' => $session->id]);
         } else {
             return redirect()->route('purchase.complete', ['item' => $item->id]);
@@ -135,8 +171,8 @@ class ItemController extends Controller
 
         // カテゴリの関連付け
         if ($request->filled('categories')) {
-        $item->categories()->sync($request->categories);
-    }
+            $item->categories()->sync($request->categories);
+        }
 
         return redirect()->route('mypage', compact('user_id'))
             ->with('success', '商品を出品しました。');

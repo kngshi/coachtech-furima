@@ -7,6 +7,15 @@
     font-size: 20px;
 }
 
+.flash-message__error {
+    padding: 15px 30px;
+    margin-bottom: 10px;
+    border-color: #f5c2c7;
+    background-color: #f8d7da;
+    color: #842029;
+    font-size: 20px;
+}
+
 .grid-container {
     margin-top: 70px;
     display: grid;

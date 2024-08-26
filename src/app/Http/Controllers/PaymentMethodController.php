@@ -9,29 +9,41 @@ use Illuminate\Support\Facades\Auth;
 
 class PaymentMethodController extends Controller
 {
-    public function edit()
+    public function edit(Item $item)
     {
         $user = Auth::user();
-        $payment_method = session('payment_method',0);
 
-        return view('payment-method', compact('user', 'payment_method'));
+        $paymentMethod = SoldItem::where('user_id', $user->id)
+                            ->where('item_id', $item->id)
+                            ->pluck('payment_method_id')
+                            ->first();
+
+        $paymentMethod = $paymentMethod ?? 1;
+
+        return view('payment-method', compact('user','item', 'paymentMethod'));
     }
 
-    public function update(Request $request)
+    public function update(Request $request,Item $item)
     {
         $validatedData = $request->validate([
-            'item_id' => 'required|exists:items,id',
-            'payment_method' => 'required|in:0,1,2',
+            'payment_method_id' => 'required|exists:payment_methods,id',
         ]);
 
         $user_id = Auth::id();
+        $paymentMethod = $validatedData['payment_method_id'];
 
-        $request->session()->put('payment_method', $validatedData['payment_method']);
+        SoldItem::updateOrCreate(
+        [
+            'user_id' => $user_id,
+            'item_id' => $item->id,
+        ],
+        [
+            'payment_method_id' => $paymentMethod,
+        ]
+    );
 
-        $item = Item::find($validatedData['item_id']);
-        $paymentMethod = $validatedData['payment_method'];
-
-        return view('purchase', compact('item', 'paymentMethod'))
-            ->with('success', '支払い方法を更新しました。');
+        return redirect()->route('purchase.info', ['item' => $item->id])
+                    ->with('payment_method_id', $paymentMethod)
+                    ->with('success', '支払い方法を更新しました。');
     }
 }
