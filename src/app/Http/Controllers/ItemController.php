@@ -48,14 +48,12 @@ class ItemController extends Controller
     {
         $user_id = Auth::id();
 
-    // ユーザーが選択した支払い方法を取得
-    $soldItem = SoldItem::where('user_id', $user_id)
+        $soldItem = SoldItem::where('user_id', $user_id)
                         ->where('item_id', $item->id)
                         ->first();
 
-        // 支払い方法が設定されていない場合はデフォルト値を設定
         if (is_null($soldItem) || is_null($soldItem->payment_method_id)) {
-            $paymentMethod = PaymentMethod::find(1); // クレジットカードをデフォルトに設定
+            $paymentMethod = PaymentMethod::find(1);
         } else {
             $paymentMethod = PaymentMethod::find($soldItem->payment_method_id);
         }
@@ -66,6 +64,7 @@ class ItemController extends Controller
     public function purchaseItem(Request $request, Item $item)
     {
         $user = Auth::user();
+        $user_id = Auth::id();
 
         $profile = $user->profile;
 
@@ -107,7 +106,7 @@ class ItemController extends Controller
                     'product_data' => [
                         'name' => $item->name,
                     ],
-                    'unit_amount' => $item->price, 
+                    'unit_amount' => $item->price,
                 ],
                 'quantity' => 1,
             ]],
@@ -169,7 +168,6 @@ class ItemController extends Controller
             'condition_id' => $validatedData['condition_id'],
         ]);
 
-        // カテゴリの関連付け
         if ($request->filled('categories')) {
             $item->categories()->sync($request->categories);
         }
