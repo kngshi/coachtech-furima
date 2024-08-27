@@ -31,6 +31,25 @@ class ItemController extends Controller
         return view('index', compact('items', 'likedItems', 'categories'));
     }
 
+    public function search(Request $request)
+    {
+        $query = Item::query();
+
+        if ($request->filled('keyword')) {
+            $keyword = $request->input('keyword');
+            $query->where('name', 'LIKE', "%{$keyword}%")
+                ->orWhere('description', 'LIKE', "%{$keyword}%")
+                ->orWhere('brand', 'LIKE', "%{$keyword}%");
+        } else {
+            $keyword = '';
+        }
+
+        $items = $query->get();
+
+        return view('components.search-results', compact('items', 'keyword'));
+    }
+
+
     public function itemDetail(Item $item)
     {
         $item->load('categories', 'condition');

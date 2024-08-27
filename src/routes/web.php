@@ -24,6 +24,7 @@ use App\Http\Controllers\AdminController;
 require __DIR__.'/auth.php';
 
 Route::get('/', [ItemController::class, 'index'])->name('index');
+Route::get('/search', [ItemController::class, 'search'])->name('search');
 Route::get('/item/{item}', [ItemController::class, 'itemDetail'])->name('item.detail');
 
 Route::middleware(['auth'])->group(function () {

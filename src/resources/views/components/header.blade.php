@@ -1,8 +1,18 @@
 <div class="header-flex">
     <div class="flex-content">
-        <a href="/">
-            <img src="/img/logo.svg" alt="coachtech" width="280" height="80" class="header-logo">
-        </a>
+        <div class="flex-content__item">
+            <a href="/">
+                <img src="/img/logo.svg" alt="coachtech" width="280" height="80" class="header-logo">
+            </a>
+        </div>
+        <div class="flex-content__item">
+            <form action="{{ route('search') }}" method="GET"  class="search-form">
+                <input type="text" name="keyword" placeholder="なにをお探しですか？" class="search-input">
+                <button type="submit" class="search-button">
+                    <i class="fa-solid fa-magnifying-glass fa-xl"></i>
+                </button>
+            </form>
+        </div>
     </div>
     @if(Auth::check())
     <div class="flex-link">

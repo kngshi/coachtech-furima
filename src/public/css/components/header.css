@@ -1,22 +1,61 @@
 .header-flex {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .header-logo {
-    padding-bottom: 10px;
+    padding-bottom: 0px;
     padding-left: 20px;
 }
 
+.flex-content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.flex-content__item {
+    margin: 0 20px;
+}
+
+.search-input {
+    height: 45px;
+    width: 300px;
+    padding: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+}
+
+.search-input::placeholder {
+    color: #333;
+    opacity: 1;
+    font-size: 16px;
+}
+
+.search-button {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-left: none;
+    height: 45px;
+    width: 45px;
+    border-radius: 0 5px 5px 0;
+}
+
 .flex-link {
-    margin: 20px 15px;
+    margin: 0px 10px;
+    max-width: 40%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .header-link {
     color: white;
     font-size: 18px;
     text-decoration: none;
-    margin: 20px 20px;
+    margin: 0px 10px;
 }
 
 .header-button {
@@ -31,18 +70,45 @@
 
 @media screen and (max-width: 768px) {
 
+    .header-flex {
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .flex-content {
+        justify-content: space-between;
+    }
+
+    .header-logo {
+        padding-left: 10px;
+        height: 60px;
+        width: 240px;
+    }
+
+    .search-input {
+        height: 40px;
+        width: 240px;
+    }
+
+    .search-button {
+        height: 40px;
+        width: 40px;
+        border-radius: 0 5px 5px 0;
+    }
+
     .flex-link {
-        margin: 20px 5px;
+        margin: 5px 20px;
+        max-width: 80%;
     }
 
     .header-link {
         font-size: 18px;
-        margin: 0px 10px;
+        margin: 0px 20px;
     }
 
     .header-button {
         font-size: 16px;
-        padding: 8px 20px;
+        padding: 6px 20px;
     }
 }
 
@@ -54,8 +120,24 @@
     }
 
     .header-logo {
-        width: 230px;
+        padding-left: 10px;
+        width: 200px;
         height: 60px;
+    }
+
+    .search-input {
+        height: 35px;
+        width: 150px;
+    }
+
+    .search-input::placeholder {
+        font-size: 14px;
+    }
+
+    .search-button {
+        height: 35px;
+        width: 35px;
+        border-radius: 0 5px 5px 0;
     }
 
     .flex-link {
@@ -65,10 +147,5 @@
     .header-link {
         font-size: 16px;
         margin: 0px 15px;
-    }
-
-    .header-button {
-        font-size: 16px;
-        padding: 8px 20px;
     }
 }
