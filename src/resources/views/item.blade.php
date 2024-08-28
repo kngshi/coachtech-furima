@@ -84,7 +84,13 @@
                         <th class="item-table__header">カテゴリー</th>
                         <td class="item-table__category">
                         @foreach($item->categories as $category)
-                            {{ $category->name }}@if(!$loop->last), @endif
+                        @if($category->parent)
+                            <span class="category-box">{{ $category->parent->name }}</span>
+                        @endif
+                            <span class="category-box">{{ $category->name }}</span>
+                        @if(!$loop->last)
+                            <span class="category-separator"></span>
+                        @endif
                         @endforeach
                         </td>
                     </tr>

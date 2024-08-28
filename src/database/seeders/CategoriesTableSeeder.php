@@ -14,41 +14,41 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        $param = [
-            'id' => '1',
-            'name' => 'ファッション',
-        ];
-        DB::table('categories')->insert($param);
+        $fashion = DB::table('categories')->insertGetId(['name' => 'ファッション']);
+        $gamesToysGoods = DB::table('categories')->insertGetId(['name' => 'ゲーム・おもちゃ・グッズ']);
+        $booksMagazinesComics = DB::table('categories')->insertGetId(['name' => '本・雑誌・漫画']);
+        $smartphonesTabletsComputers = DB::table('categories')->insertGetId(['name' => 'スマホ・タブレット・パソコン']);
+        $foodBeveragesAlcohol = DB::table('categories')->insertGetId(['name' => '食品・飲料品・酒']);
 
-        $param = [
-            'id' => '2',
-            'name' => 'ゲーム・おもちゃ・グッズ',
-        ];
-        DB::table('categories')->insert($param);
+        DB::table('categories')->insert([
+            ['name' => 'メンズ', 'parent_id' => $fashion],
+            ['name' => 'レディース', 'parent_id' => $fashion],
+            ['name' => 'キッズ', 'parent_id' => $fashion],
+        ]);
 
-        $param = [
-            'id' => '3',
-            'name' => '本・雑誌・漫画',
-        ];
-        DB::table('categories')->insert($param);
+        DB::table('categories')->insert([
+            ['name' => 'ゲーム', 'parent_id' => $gamesToysGoods],
+            ['name' => 'おもちゃ', 'parent_id' => $gamesToysGoods],
+            ['name' => 'グッズ', 'parent_id' => $gamesToysGoods],
+        ]);
 
-        $param = [
-            'id' => '4',
-            'name' => 'スマホ・タブレット・パソコン',
-        ];
-        DB::table('categories')->insert($param);
+        DB::table('categories')->insert([
+            ['name' => '本', 'parent_id' => $booksMagazinesComics],
+            ['name' => '雑誌', 'parent_id' => $booksMagazinesComics],
+            ['name' => '漫画', 'parent_id' => $booksMagazinesComics],
+        ]);
 
-        $param = [
-            'id' => '5',
-            'name' => '食品・飲料品・酒',
-        ];
-        DB::table('categories')->insert($param);
+        DB::table('categories')->insert([
+            ['name' => 'スマホ', 'parent_id' => $smartphonesTabletsComputers],
+            ['name' => 'タブレット', 'parent_id' => $smartphonesTabletsComputers],
+            ['name' => 'パソコン', 'parent_id' => $smartphonesTabletsComputers],
+        ]);
 
-        $param = [
-            'id' => '6',
-            'name' => 'キッチン・日用品・その他',
-        ];
-        DB::table('categories')->insert($param);
+        DB::table('categories')->insert([
+            ['name' => '食品', 'parent_id' => $foodBeveragesAlcohol],
+            ['name' => '飲料品', 'parent_id' => $foodBeveragesAlcohol],
+            ['name' => '酒', 'parent_id' => $foodBeveragesAlcohol],
+        ]);
 
     }
 }

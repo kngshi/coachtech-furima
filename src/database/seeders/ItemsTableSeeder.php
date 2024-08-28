@@ -14,7 +14,6 @@ class ItemsTableSeeder extends Seeder
      */
     public function run()
     {
-        
         $param = [
             'id' => '1',
             'name' => 'sample商品',
@@ -60,6 +59,18 @@ class ItemsTableSeeder extends Seeder
             'img_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg',
             'user_id' => '2',
             'condition_id' => '3',
+        ];
+        DB::table('items')->insert($param);
+
+        $param = [
+            'id' => '5',
+            'name' => 'sample商品5',
+            'brand' => 'COACHTECH',
+            'price' => '1800',
+            'description' => 'これはsample商品5です',
+            'img_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg',
+            'user_id' => '3',
+            'condition_id' => '2',
         ];
         DB::table('items')->insert($param);
     }

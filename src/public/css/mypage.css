@@ -15,6 +15,11 @@
     padding-bottom: 30px;
 }
 
+.mypage__group {
+    display: flex;
+    align-items: center;
+}
+
 .profile-img {
     height: 120px;
     width: 120px;
@@ -25,6 +30,7 @@
 .mypage__user {
     font-size: 30px;
     font-weight: bold;
+    margin-left: 30px;
 }
 
 .profile-link {

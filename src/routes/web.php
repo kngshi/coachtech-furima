@@ -24,7 +24,12 @@ use App\Http\Controllers\AdminController;
 require __DIR__.'/auth.php';
 
 Route::get('/', [ItemController::class, 'index'])->name('index');
+
+//検索機能
 Route::get('/search', [ItemController::class, 'search'])->name('search');
+Route::get('/search/category', [ItemController::class, 'searchByCategory'])->name('search.category');
+Route::get('search/categories/{id}', [ItemController::class, 'showCategories'])->name('show.categories');
+
 Route::get('/item/{item}', [ItemController::class, 'itemDetail'])->name('item.detail');
 
 Route::middleware(['auth'])->group(function () {

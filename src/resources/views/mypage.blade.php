@@ -11,17 +11,21 @@
     </div>
 @endif
 <div class="mypage__heading">
-    @if ($profile)
-    <div class="mypage__img">
-        <img src="{{ $profile->img_url }}" alt="プロフィール画像" class="profile-img">
+    <div class="mypage__group">
+        @if ($profile)
+        <div class="mypage__img">
+            <img src="{{ $profile->img_url }}" alt="プロフィール画像" class="profile-img">
+        </div>
+        @else
+        <div class="profile-img" style="background-color: #f0f0f0;"></div>
+        @endif
+        @auth
+        <div class="mypage__user">{{ Auth::user()->name ? Auth::user()->name : 'ユーザー名_未設定' }}</div>
+        @endauth
     </div>
-    @else
-    <div class="profile-img" style="background-color: #f0f0f0;"></div>
-    @endif
-    @auth
-    <div class="mypage__user">{{ Auth::user()->name ? Auth::user()->name : 'ユーザー名_未設定' }}</div>
-    @endauth
-    <a class="profile-link" href="{{ route('edit.profile') }}">プロフィールを編集</a>
+    <div class="mypage__group">
+        <a class="profile-link" href="{{ route('edit.profile') }}">プロフィールを編集</a>
+    </div>
 </div>
 <div class="tab">
     <ul class="tab-menu">

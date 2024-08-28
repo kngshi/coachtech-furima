@@ -6,12 +6,18 @@
             </a>
         </div>
         <div class="flex-content__item">
-            <form action="{{ route('search') }}" method="GET"  class="search-form">
+            <form action="{{ route('search') }}" method="GET"  class="search-form" id="accordion-button">
                 <input type="text" name="keyword" placeholder="なにをお探しですか？" class="search-input">
                 <button type="submit" class="search-button">
                     <i class="fa-solid fa-magnifying-glass fa-xl"></i>
                 </button>
             </form>
+            <div class="accordion-content" id="accordion-content">
+                <a href="{{ route('search.category') }}" class="dropdown-item">
+                    <span class="dropdown-text">カテゴリーから探す</span>
+                    <span class="dropdown-arrow">&gt;</span>
+                </a>
+            </div>
         </div>
     </div>
     @if(Auth::check())
@@ -34,3 +40,32 @@
     </div>
     @endif
 </div>
+<script>
+document.getElementById('accordion-button').addEventListener('click', function(event) {
+    // 検索ボタンがクリックされたかどうかを確認
+    var isSearchButtonClicked = event.target.closest('button');
+
+    // 検索ボタンがクリックされた場合、フォームを送信する
+    if (isSearchButtonClicked) {
+        return; // ここでreturnすることで、フォーム送信を許可
+    }
+
+    event.preventDefault(); // フォームが送信されるのを防ぐ
+    var accordionContent = document.getElementById('accordion-content');
+    
+    if (accordionContent.style.display === 'block') {
+        accordionContent.style.display = 'none';
+    } else {
+        accordionContent.style.display = 'block';
+    }
+});
+
+// 他の場所をクリックしたときにアコーディオンを閉じる処理
+document.addEventListener('click', function(event) {
+    var isClickInside = document.getElementById('accordion-button').contains(event.target);
+
+    if (!isClickInside) {
+        document.getElementById('accordion-content').style.display = 'none';
+    }
+});
+</script>

@@ -35,18 +35,54 @@ class ItemController extends Controller
     {
         $query = Item::query();
 
-        if ($request->filled('keyword')) {
+        if ($request->filled('keyword') || $request->filled('category_id')) {
             $keyword = $request->input('keyword');
-            $query->where('name', 'LIKE', "%{$keyword}%")
+            $query->where(function($q) use ($keyword) {
+                $q->where('name', 'LIKE', "%{$keyword}%")
                 ->orWhere('description', 'LIKE', "%{$keyword}%")
-                ->orWhere('brand', 'LIKE', "%{$keyword}%");
+                ->orWhere('brand', 'LIKE', "%{$keyword}%")
+                ->orWhereHas('categories', function($q) use ($keyword) {
+                    $q->where('name', 'LIKE', "%{$keyword}%");
+                });
+            });
         } else {
             $keyword = '';
+        }
+
+        if ($request->filled('category_id')) {
+            $category_ids = $request->input('category_id');
+
+            if (!is_array($category_ids)) {
+                $category_ids = [$category_ids];
+            }
+
+            $query->whereHas('categories', function ($q) use ($category_ids) {
+                $q->whereIn('categories.id', $category_ids);
+            });
         }
 
         $items = $query->get();
 
         return view('components.search-results', compact('items', 'keyword'));
+    }
+
+    public function searchByCategory(Request $request)
+    {
+        $categories = Category::whereNull('parent_id')->get();
+
+        return view('search.category', compact('categories'));
+    }
+
+    public function showCategories($id)
+    {
+        $category = Category::findOrFail($id);
+        $childCategories = $category->children;
+
+        if ($childCategories->isEmpty()) {
+            return redirect()->route('search', ['category_id' => $id]);
+        }
+
+        return view('search.category-show', compact('category', 'childCategories'));
     }
 
 
@@ -166,7 +202,8 @@ class ItemController extends Controller
             'img_url' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'user_id' => 'required',
             'condition_id' => 'required|integer',
-            // category_idを一旦抜いた状態で実装（仕様の確認中）
+            'categories' => 'required|array',  // カテゴリは配列で受け取る
+            'categories.*' => 'integer|exists:categories,id',  // 配列内の各カテゴリが整数であり、categoriesテーブルに存在するIDであることを確認
         ]);
 
         if ($request->hasFile('img_url')) {
@@ -187,6 +224,7 @@ class ItemController extends Controller
             'condition_id' => $validatedData['condition_id'],
         ]);
 
+        // カテゴリの関連付け
         if ($request->filled('categories')) {
             $item->categories()->sync($request->categories);
         }

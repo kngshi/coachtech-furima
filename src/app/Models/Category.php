@@ -11,9 +11,19 @@ class Category extends Model
 
     protected $fillable = ['name'];
 
+
+    public function children()
+    {
+        return $this->hasMany(Category::class, 'parent_id');
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Category::class, 'parent_id');
+    }
+
     public function items()
     {
         return $this->belongsToMany(Item::class, 'category_items');
     }
-
 }

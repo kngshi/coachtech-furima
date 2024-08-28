@@ -22,6 +22,9 @@
         </div>
     </div>
 @else
-    <p>該当する商品が見つかりませんでした。</p>
+    <div class="no-results">
+        <p>該当する商品が見つかりませんでした。</p>
+        <a href="javascript:history.back()" class="back-link">戻る</a>
+    </div>
 @endif
 @endsection

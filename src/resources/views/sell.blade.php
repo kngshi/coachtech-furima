@@ -33,7 +33,7 @@
                 <label class="sell-form__label">カテゴリー</label>
             </div>
             <div class="sell-form__inputs">
-               <select name="category_id" id="category_id" class="form-input__category" multiple>
+               <select name="category_id[]" id="category_id" class="form-input__category" multiple>
                 @foreach($categories as $category)
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
