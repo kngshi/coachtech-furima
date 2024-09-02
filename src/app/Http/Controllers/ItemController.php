@@ -202,9 +202,9 @@ class ItemController extends Controller
             'img_url' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'user_id' => 'required',
             'condition_id' => 'required|integer',
-            'categories' => 'required|array',  // カテゴリは配列で受け取る
-            'categories.*' => 'integer|exists:categories,id',  // 配列内の各カテゴリが整数であり、categoriesテーブルに存在するIDであることを確認
         ]);
+
+
 
         if ($request->hasFile('img_url')) {
             $image = $request->file('img_url');
@@ -222,14 +222,24 @@ class ItemController extends Controller
             'img_url' => $imageUrl,
             'user_id' => $user_id,
             'condition_id' => $validatedData['condition_id'],
+            'child_category' => 'nullable|integer|exists:categories,id',
         ]);
 
-        // カテゴリの関連付け
-        if ($request->filled('categories')) {
-            $item->categories()->sync($request->categories);
+        // 単一カテゴリIDを保存
+        if ($request->filled('child_category')) {
+            $item->categories()->sync([$request->child_category]);
         }
 
         return redirect()->route('mypage', compact('user_id'))
             ->with('success', '商品を出品しました。');
+    }
+
+    public function getChildCategories($parentId)
+    {
+        // 親カテゴリに関連する子カテゴリを取得
+        $childCategories = Category::where('parent_id', $parentId)->get();
+
+        // 子カテゴリをJSON形式で返す
+        return response()->json($childCategories);
     }
 }

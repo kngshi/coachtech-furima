@@ -30,6 +30,10 @@
     text-align: center;
 }
 
+.selected-categories{
+    padding-top: 5px;
+}
+
 .custom-file-button {
     font-size: 16px;
     font-weight: bold;
@@ -62,7 +66,7 @@
 
 .form-input__category {
     width: 450px;
-    height: 80px;
+    height: 40px;
 }
 
 .form-input__textarea {

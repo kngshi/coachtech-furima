@@ -61,6 +61,7 @@ Route::middleware(['auth'])->group(function () {
     //出品ページ
     Route::get('/sell', [ItemController::class, 'createItem'])->name('sell.create');
     Route::post('/sell', [ItemController::class, 'storeItem'])->name('sell.store');
+    Route::get('/get-child-categories/{parentId}', [ItemController::class, 'getChildCategories']);
 
     //マイページ
     Route::get('/mypage', [UserController::class, 'getUser'])->name('mypage');

@@ -33,10 +33,16 @@
                 <label class="sell-form__label">カテゴリー</label>
             </div>
             <div class="sell-form__inputs">
-               <select name="category_id[]" id="category_id" class="form-input__category" multiple>
-                @foreach($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                @endforeach
+                <select name="parent_category" id="parent_category" class="form-input__category">
+                    <option value="">親カテゴリを選択</option>
+                    @foreach($categories->where('parent_id', null) as $parent)
+                    <option value="{{ $parent->id }}">{{ $parent->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div id="child-category-container" style="display:none;" class="sell-form__group--item">
+                <label for="child_category"  class="sell-form__label">子カテゴリ</label>
+                <select id="child_category" name="category[]" class="form-input__category">
                 </select>
             </div>
             <div id="selected-categories" class="selected-categories">
@@ -52,7 +58,7 @@
                 <select name="condition_id" id="condition_id" class="form-input">
                 <option value="">選択してください</option>
                 @foreach($conditions as $condition)
-                    <option value="{{ $condition->id }}">{{ $condition->condition }}</option>
+                    <option value="{{ $condition->id }}" {{ old('condition_id') == $condition->id ? 'selected' : '' }}>{{ $condition->condition }}</option>
                 @endforeach
                 </select>
             </div>
@@ -63,19 +69,19 @@
                 <label class="sell-form__label">商品名</label>
             </div>
             <div class="sell-form__inputs">
-                <input type="text" name="name" id="name" class="form-input" autocomplete="off" required>
+                <input type="text" name="name" id="name" class="form-input" autocomplete="off" required value="{{ old('name') }}">
             </div>
             <div class="sell-form__condition">
                 <label class="sell-form__label">商品の説明</label>
             </div>
             <div class="sell-form__inputs">
-                <input type="textarea" name="description" id="description" class="form-input__textarea" autocomplete="off" required>
+                <textarea name="description" id="description" class="form-input__textarea" autocomplete="off" required>{{ old('description') }}</textarea>
             </div>
             <div class="sell-form__group--item">
                 <label class="sell-form__label">ブランド名</label>
             </div>
             <div class="sell-form__inputs">
-                <input type="text" name="brand" id="brand" class="form-input" autocomplete="off" >
+                <input type="text" name="brand" id="brand" class="form-input" autocomplete="off" value="{{ old('brand') }}">
             </div>
         </div>
         <div class="sell-form__group">
@@ -84,7 +90,7 @@
                 <label class="sell-form__label">販売価格</label>
             </div>
             <div class="sell-form__inputs">
-                <input type="text" name="price" id="price" class="form-input" autocomplete="off" placeholder="¥" required>
+                <input type="text" name="price" id="price" class="form-input" autocomplete="off" placeholder="¥" required value="{{ old('price') }}">
             </div>
         </div>
         <input type="hidden" name="user_id" value="{{ $user_id }}">
@@ -122,6 +128,49 @@
             listItem.textContent = option.text;
             selectedCategoriesList.appendChild(listItem);
         });
+    });
+});
+
+//カテゴリ表示部分
+document.addEventListener('DOMContentLoaded', function() {
+    const parentCategorySelect = document.getElementById('parent_category');
+    const childCategoryContainer = document.getElementById('child-category-container');
+    const childCategorySelect = document.getElementById('child_category');
+    const selectedCategoriesList = document.getElementById('selected-categories-list');
+
+    // 親カテゴリが変更されたとき
+    parentCategorySelect.addEventListener('change', function() {
+        const parentId = this.value;
+
+        if (parentId) {
+            fetch(`/get-child-categories/${parentId}`)
+                .then(response => response.json())
+                .then(data => {
+                    childCategorySelect.innerHTML = '<option value="">子カテゴリを選択</option>';
+                    data.forEach(category => {
+                        const option = document.createElement('option');
+                        option.value = category.id;
+                        option.textContent = category.name;
+                        childCategorySelect.appendChild(option);
+                    });
+                    childCategoryContainer.style.display = 'block';
+                });
+        } else {
+            childCategorySelect.innerHTML = '';
+            childCategoryContainer.style.display = 'none';
+        }
+    });
+
+    // 子カテゴリが変更されたとき
+    childCategorySelect.addEventListener('change', function() {
+        const categoryId = this.value;
+        const categoryName = this.options[this.selectedIndex].text;
+
+        if (categoryId) {
+            const listItem = document.createElement('li');
+            listItem.textContent = categoryName;
+            selectedCategoriesList.appendChild(listItem);
+        }
     });
 });
 </script>
