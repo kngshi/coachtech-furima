@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Profile;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\UpdateAddressRequest;
 
 class ProfileController extends Controller
 {
@@ -14,15 +15,9 @@ class ProfileController extends Controller
         return view('address', compact('item'));
     }
 
-    public function updateAddress(Request $request, Item $item)
+    public function updateAddress(UpdateAddressRequest $request, Item $item)
     {
         $user_id = Auth::id();
-
-        $request->validate([
-            'postcode' => 'required|string|max:10',
-            'address' => 'required|string|max:255',
-            'building' => 'nullable|string|max:255',
-        ]);
 
         $profile = Profile::updateOrCreate(
         ['user_id' => $user_id],
@@ -33,6 +28,6 @@ class ProfileController extends Controller
             ]
         );
 
-        return redirect()->route('edit.address', $item->id)->with('success', '住所が更新されました');
+        return redirect()->route('purchase.info', $item->id)->with('success', '住所が更新されました');
     }
 }

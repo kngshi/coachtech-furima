@@ -21,9 +21,12 @@
                 <label class="sell-form__label" for="image">商品画像</label>
                 </div>
                 <div class="sell-form__select">
-                    <input type="file" name="img_url" id="img_url" class="img-select"required>
+                    <input type="file" name="img_url" id="img_url" class="img-select">
                     <button type="button" class="custom-file-button">画像を選択する</button>
                     <span id="file-name"></span>
+                    @error('img_url')
+                            <div class="error-message">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
         </div>
@@ -31,6 +34,9 @@
             <h3 class="sell-form__ttl">商品の詳細</h3>
             <div class="sell-form__group--item">
                 <label class="sell-form__label">カテゴリー</label>
+                @error('parent_category')
+                        <div class="error-message">{{ $message }}</div>
+                @enderror
             </div>
             <div class="sell-form__inputs">
                 <select name="parent_category" id="parent_category" class="form-input__category">
@@ -53,6 +59,9 @@
             </div>
             <div class="sell-form__group--item">
                 <label class="sell-form__label">商品の状態</label>
+                @error('condition_id')
+                        <div class="error-message">{{ $message }}</div>
+                @enderror
             </div>
             <div class="sell-form__inputs">
                 <select name="condition_id" id="condition_id" class="form-input">
@@ -67,18 +76,27 @@
             <h3 class="sell-form__ttl">商品名と説明</h3>
             <div class="sell-form__group--item">
                 <label class="sell-form__label">商品名</label>
+                @error('name')
+                        <div class="error-message">{{ $message }}</div>
+                @enderror
             </div>
             <div class="sell-form__inputs">
                 <input type="text" name="name" id="name" class="form-input" autocomplete="off" required value="{{ old('name') }}">
             </div>
             <div class="sell-form__condition">
                 <label class="sell-form__label">商品の説明</label>
+                @error('description')
+                        <div class="error-message">{{ $message }}</div>
+                @enderror
             </div>
             <div class="sell-form__inputs">
                 <textarea name="description" id="description" class="form-input__textarea" autocomplete="off" required>{{ old('description') }}</textarea>
             </div>
             <div class="sell-form__group--item">
                 <label class="sell-form__label">ブランド名</label>
+                @error('brand')
+                        <div class="error-message">{{ $message }}</div>
+                @enderror
             </div>
             <div class="sell-form__inputs">
                 <input type="text" name="brand" id="brand" class="form-input" autocomplete="off" value="{{ old('brand') }}">
@@ -88,6 +106,9 @@
             <h3 class="sell-form__ttl">販売価格</h3>
             <div class="sell-form__group--item">
                 <label class="sell-form__label">販売価格</label>
+                @error('price')
+                        <div class="error-message">{{ $message }}</div>
+                @enderror
             </div>
             <div class="sell-form__inputs">
                 <input type="text" name="price" id="price" class="form-input" autocomplete="off" placeholder="¥" required value="{{ old('price') }}">

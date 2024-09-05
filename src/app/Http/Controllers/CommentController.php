@@ -6,6 +6,8 @@ use App\Models\Item;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\CommentRequest;
+
 
 class CommentController extends Controller
 {
@@ -17,13 +19,9 @@ class CommentController extends Controller
         return view('comment', compact('item', 'comments'));
     }
 
-    public function storeComment(Request $request, Item $item)
+    public function storeComment(CommentRequest $request, Item $item)
     {
         $user_id = Auth::id();
-
-        $request->validate([
-            'comment' => 'required|string|max:1000',
-        ]);
 
         $comment = Comment::create([
             'user_id' => $user_id,

@@ -158,6 +158,18 @@
     flex-direction: column;
 }
 
+.alert {
+    border: 1px solid transparent;
+    border-radius: 4px;
+    width: 320px;
+}
+
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
 .comment-form {
     margin: 20px 0;
 }

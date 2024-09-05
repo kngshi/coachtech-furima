@@ -14,7 +14,6 @@
 @if (session('fail'))
     <div class="flash-message__fail">{{ session('fail') }}</div>
 @endif
-
 <div class="grid-container">
     <div class="grid-left">
         <img src="{{ $item->img_url }}" alt="商品画像" class="img-box">
@@ -84,11 +83,20 @@
                 @endforeach
             </div>
             <div class="comment-form__group">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form action="{{ route('store.comment', $item->id) }}" method="POST">
                     @csrf
                     <div class="comment-form">
                         <div class="comment-label">商品へのコメント</div>
-                        <input type="textarea" name="comment" class="comment-textarea" required value="{{ old('comment') }}"></input>
+                        <textarea name="comment" class="comment-textarea" required value="{{ old('comment') }}"></textarea>
                     </div>
                     <div class="comment-form">
                         <button type="submit" class="comment-button">コメントを送信する</button>

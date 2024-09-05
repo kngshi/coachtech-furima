@@ -20,6 +20,9 @@
                 <div class="group">
                     <div class="address-form__postcode">
                         <label class="address-form__label">郵便番号</label>
+                        @error('postcode')
+                            <div class="error-message">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="address-form__inputs">
                         <input type="text" name="postcode" id="postcode" class="form-input" autocomplete="off" value="{{ old('postcode') }}" required>
@@ -28,6 +31,9 @@
                 <div class="group">
                     <div class="address-form__address">
                         <label class="address-form__label">住所</label>
+                        @error('address')
+                            <div class="error-message">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="address-form__inputs">
                         <input type="text" name="address" id="address" class="form-input" autocomplete="off" value="{{ old('address') }}" required>
@@ -36,6 +42,9 @@
                 <div class="group">
                     <div class="address-form__building">
                         <label class="address-form__label">建物名</label>
+                        @error('building')
+                            <div class="error-message">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="address-form__inputs">
                         <input type="text" name="building" id="building" class="form-input" autocomplete="off" value="{{ old('building') }}">

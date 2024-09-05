@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
 use Stripe\Stripe;
 use Stripe\Checkout\Session;
+use App\Http\Requests\SellRequest;
+
 
 class ItemController extends Controller
 {
@@ -190,21 +192,11 @@ class ItemController extends Controller
         return view('sell', compact('user_id','categories','conditions'));
     }
 
-    public function storeItem(Request $request)
+    public function storeItem(SellRequest $request)
     {
         $user_id = Auth::id();
 
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:191',
-            'brand' => 'required|string|max:191',
-            'price' => 'required|integer',
-            'description' => 'required|string|max:400',
-            'img_url' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'user_id' => 'required',
-            'condition_id' => 'required|integer',
-        ]);
-
-
+        $validatedData = $request->validated();
 
         if ($request->hasFile('img_url')) {
             $image = $request->file('img_url');
@@ -225,7 +217,6 @@ class ItemController extends Controller
             'child_category' => 'nullable|integer|exists:categories,id',
         ]);
 
-        // 単一カテゴリIDを保存
         if ($request->filled('child_category')) {
             $item->categories()->sync([$request->child_category]);
         }
@@ -236,10 +227,8 @@ class ItemController extends Controller
 
     public function getChildCategories($parentId)
     {
-        // 親カテゴリに関連する子カテゴリを取得
         $childCategories = Category::where('parent_id', $parentId)->get();
 
-        // 子カテゴリをJSON形式で返す
         return response()->json($childCategories);
     }
 }

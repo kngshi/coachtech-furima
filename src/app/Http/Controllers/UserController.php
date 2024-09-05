@@ -9,6 +9,8 @@ use App\Models\Item;
 use App\Models\SoldItem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\ProfileRequest;
+
 
 class UserController extends Controller
 {
@@ -34,17 +36,9 @@ class UserController extends Controller
         return view('profile', compact('user_id','profile'));
     }
 
-    public function storeProfile(Request $request)
+    public function storeProfile(ProfileRequest $request)
     {
         $user_id = Auth::id();
-
-        $validatedData = $request->validate([
-            'img_url' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'name' => 'required|string|max:191',
-            'postcode' => 'required|string|max:191',
-            'address' => 'required|string|max:191',
-            'building' => 'nullable|string|max:191',
-        ]);
 
         if ($request->has('name')) {
             Auth::user()->update(['name' => $request->input('name')]);

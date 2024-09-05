@@ -4,6 +4,12 @@
     align-items: center;
 }
 
+.error-message {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
 .sell-form__group {
     padding-bottom: 30px;
     width: 450px;

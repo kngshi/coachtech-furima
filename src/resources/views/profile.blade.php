@@ -25,9 +25,12 @@
                     <div class="profile-img__default"></div>
                     @endif
                     <div class="img-item">
-                        <input type="file" name="img_url" id="img_url" class="img-select"required>
+                        <input type="file" name="img_url" id="img_url" class="img-select">
                         <button type="button" class="custom-file-button">画像を選択する</button>
                         <span id="file-name"></span>
+                        @error('img_url')
+                        <div class="error-message">{{ $message }}</div>
+                        @enderror
                     </div>
                 </div>
             </div>
@@ -37,6 +40,9 @@
                 </div>
                 <div class="profile-form__inputs">
                     <input type="text" name="name" id="name" class="form-input" autocomplete="off" value="{{ old('name', Auth::user()->name) }}">
+                    @error('name')
+                    <div class="error-message">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
             <div class="profile-form__group">
@@ -49,6 +55,9 @@
                     @else
                     <input type="text" name="postcode" id="postcode" class="form-input" autocomplete="off" value="{{ old('postcode') }}" required>
                     @endif
+                    @error('postcode')
+                    <div class="error-message">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
             <div class="profile-form__group">
@@ -61,6 +70,9 @@
                     @else
                     <input type="text" name="address" id="address" class="form-input" autocomplete="off" value="{{ old('address') }}" required>
                     @endif
+                    @error('address')
+                    <div class="error-message">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
             <div class="profile-form__group">
@@ -73,6 +85,9 @@
                     @else
                     <input type="text" name="building" id="building" class="form-input" autocomplete="off" value="{{ old('building') }}">
                     @endif
+                    @error('building')
+                    <div class="error-message">{{ $message }}</div>
+                    @enderror
                 </div>
             </div>
             <input type="hidden" name="user_id" value="{{ $user_id }}">
