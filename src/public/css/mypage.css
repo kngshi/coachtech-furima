@@ -93,7 +93,8 @@
 }
 
 .img-box {
-    background-color: gray;
+    border-radius: 3px;
+    border: solid 1px #d3d3d3;
     height: 150px;
     width: 150px;
     margin: 30px;

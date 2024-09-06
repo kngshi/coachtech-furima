@@ -200,10 +200,10 @@ class ItemController extends Controller
 
         if ($request->hasFile('img_url')) {
             $image = $request->file('img_url');
-            $imagePath = $image->store('items', 'public');
-            $imageUrl = Storage::url($imagePath);
+            $s3ImagePath = $image->store('items', 's3');
+            $s3ImageUrl = Storage::disk('s3')->url($s3ImagePath);
         } else {
-            $imageUrl = null;
+            $s3ImageUrl = null;
         }
 
         $item = Item::create([
@@ -211,7 +211,7 @@ class ItemController extends Controller
             'brand' => $validatedData['brand'],
             'price' => $validatedData['price'],
             'description' => $validatedData['description'],
-            'img_url' => $imageUrl,
+            'img_url' => $s3ImageUrl,
             'user_id' => $user_id,
             'condition_id' => $validatedData['condition_id'],
             'child_category' => 'nullable|integer|exists:categories,id',

@@ -46,8 +46,8 @@ class UserController extends Controller
 
         if ($request->hasFile('img_url')) {
             $image = $request->file('img_url');
-            $imagePath = $image->store('profiles', 'public');
-            $imageUrl = Storage::url($imagePath);
+            $s3ImagePath = $image->store('users', 's3');
+            $imageUrl = Storage::disk('s3')->url($s3ImagePath);
         } else {
             $imageUrl = Auth::user()->profile->img_url ?? null;
         }
