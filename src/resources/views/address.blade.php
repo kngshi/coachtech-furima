@@ -25,7 +25,7 @@
                         @enderror
                     </div>
                     <div class="address-form__inputs">
-                        <input type="text" name="postcode" id="postcode" class="form-input" autocomplete="off" value="{{ old('postcode') }}" required>
+                        <input type="text" name="postcode" id="postcode" class="form-input" autocomplete="off" value="{{ old('postcode', $profile->postcode ?? '') }}" required>
                     </div>
                 </div>
                 <div class="group">
@@ -36,7 +36,7 @@
                         @enderror
                     </div>
                     <div class="address-form__inputs">
-                        <input type="text" name="address" id="address" class="form-input" autocomplete="off" value="{{ old('address') }}" required>
+                        <input type="text" name="address" id="address" class="form-input" autocomplete="off" value="{{ old('address', $profile->address ?? '') }}" required>
                     </div>
                 </div>
                 <div class="group">
@@ -47,7 +47,7 @@
                         @enderror
                     </div>
                     <div class="address-form__inputs">
-                        <input type="text" name="building" id="building" class="form-input" autocomplete="off" value="{{ old('building') }}">
+                        <input type="text" name="building" id="building" class="form-input" autocomplete="off" value="{{ old('building', $profile->building ?? '') }}">
                     </div>
                 </div>
             </div>
