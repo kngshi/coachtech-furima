@@ -67,8 +67,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/mypage', [UserController::class, 'getUser'])->name('mypage');
 
     //プロフィール変更ページ表示
-    Route::get('/mypage/profile', [UserController::class, 'editProfile'])->name('edit.profile');
-    Route::post('/mypage/profile', [UserController::class, 'storeProfile'])->name('store.profile');
+    Route::get('/mypage/profile', [ProfileController::class, 'editProfile'])->name('edit.profile');
+    Route::post('/mypage/profile', [ProfileController::class, 'storeProfile'])->name('store.profile');
 
     // コメント追加・削除機能
     Route::get('/item/{item}/comment', [CommentController::class, 'createComment'])->name('create.comment');
