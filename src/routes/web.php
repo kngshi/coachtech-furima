@@ -71,9 +71,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/mypage/profile', [ProfileController::class, 'storeProfile'])->name('store.profile');
 
     // コメント追加・削除機能
-    Route::get('/item/{item}/comment', [CommentController::class, 'createComment'])->name('create.comment');
-    Route::post('/item/{item}/comment', [CommentController::class, 'storeComment'])->name('store.comment');
-    Route::delete('/item/{item}/comment/{comment}', [CommentController::class, 'destroyComment'])->name('destroy.comment');
+    Route::get('/item/{item}/comment', [CommentController::class, 'create'])->name('create.comment');
+    Route::post('/item/{item}/comment', [CommentController::class, 'store'])->name('store.comment');
+    Route::delete('/item/{item}/comment/{comment}', [CommentController::class, 'destroy'])->name('destroy.comment');
 });
 
 
@@ -87,8 +87,8 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::post('/notify', [AdminController::class, 'send'])->name('admin.notify.send');
 
     // コメント追加・削除機能
-    Route::get('/item/{item}/comment', [CommentController::class, 'createComment'])->name('create.comment');
-    Route::post('/item/{item}/comment', [CommentController::class, 'storeComment'])->name('store.comment');
-    Route::delete('/item/{item}/comment/{comment}', [CommentController::class, 'destroyComment'])->name('destroy.comment');
+    Route::get('/item/{item}/comment', [CommentController::class, 'create'])->name('create.comment');
+    Route::post('/item/{item}/comment', [CommentController::class, 'store'])->name('store.comment');
+    Route::delete('/item/{item}/comment/{comment}', [CommentController::class, 'destroy'])->name('destroy.comment');
     Route::get('comments', [AdminController::class, 'index'])->name('admin.comments');
 });

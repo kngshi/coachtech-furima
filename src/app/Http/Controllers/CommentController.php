@@ -11,7 +11,7 @@ use App\Http\Requests\CommentRequest;
 
 class CommentController extends Controller
 {
-    public function createComment(Item $item)
+    public function create(Item $item)
     {
         $comments = $item->comments()->latest()->get();
         $item->load('comments');
@@ -19,7 +19,7 @@ class CommentController extends Controller
         return view('comment', compact('item', 'comments'));
     }
 
-    public function storeComment(CommentRequest $request, Item $item)
+    public function store(CommentRequest $request, Item $item)
     {
         $user_id = Auth::id();
 
@@ -32,7 +32,7 @@ class CommentController extends Controller
         return redirect()->route('create.comment', $item->id)->with('create', 'コメントが追加されました。');
     }
 
-    public function destroyComment(Item $item, Comment $comment)
+    public function destroy(Item $item, Comment $comment)
     {
         $user = Auth::user();
 
