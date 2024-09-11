@@ -88,7 +88,6 @@ class ItemController extends Controller
         return view('search.category-show', compact('category', 'childCategories'));
     }
 
-
     public function itemDetail(Item $item)
     {
         $item->load('categories', 'condition');

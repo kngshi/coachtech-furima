@@ -1,11 +1,11 @@
 # coachtech-furima（フリマアプリ）
 
-ある企業が開発した独自のフリマアプリ coachtechフリマ です。  
+ある企業が開発した独自のフリマアプリ coachtech フリマ です。  
 競合他社のサイトは機能や画面が複雑で使いづらいという調査から、シンプルな設計で作成しました。
 
 - トップページ（メインページ）
 
-![トップページ](src/public/img/project/top_before.png)
+![トップページ](src/public/img/project/top_before.jpg)
 
 トップページでは、おすすめとマイリストに分けて、出品された商品の画像を一覧で表示できるようにしています。  
 「おすすめ」では、出品された商品を新しい順に並べ、「マイリスト」では、お気に入りに追加した商品の一覧が表示されるようになっています。（マイリストには認証が必要です。）  
@@ -14,51 +14,52 @@
 
 - 商品詳細ページ
 
-![商品詳細ページ](src/public/img/project/item_before.png)
+![商品詳細ページ](src/public/img/project/item_before.jpg)
 
 商品詳細ページでは、トップページで選択した商品の詳細（画像、商品名、価格、商品の説明、商品の情報など）を見ることができます。  
-「購入する」のボタンを押すと、「購入ページ」に遷移します。  
-
+「購入する」のボタンを押すと、「購入ページ」に遷移します。
 
 - 購入ページ
 
-![購入ページ](src/public/img/project/purchase.png)
+![購入ページ](src/public/img/project/purchase.jpg)
 
 購入ページでは、購入情報（商品代金、支払い金額、支払い方法）を表示し、支払い方法と配送先を選択（変更）した上で、「購入する」ボタンを押して商品の購入が確定できるようになっています。  
 支払い方法については、「クレジットカード」「コンビニ払い」「銀行振込」の３つの中から選ぶことが可能です。  
-購入が完了したら、「購入完了ページ」に遷移します。  
+購入が完了したら、「購入完了ページ」に遷移します。
 
 - マイページ
 
-![マイページ](src/public/img/project/mypage.png)
+![マイページ](src/public/img/project/mypage.jpg)
 
-マイページでは、画面上部にプロフィール画像とユーザー名が表示されます。(デフォルトでは、画像の設定がない為、「プロフィールを編集」のボタンを押すと、「プロフィール編集画面」に遷移し、そこで設定ができます。)  
+マイページでは、画面上部にプロフィール画像とユーザー名が表示されます。(デフォルトでは、画像の設定がない為、「プロフィールを編集」のボタンを押すと、「プロフィール編集画面」に遷移し、そこで設定ができます。)
 
-- menu1、menu2(モーダルウィンドウ)
+- 出品ページ
 
-![menu1](src/public/img/menu1.png)
+![出品ページ](src/public/img/project/sell.jpg)
 
-![menu2](src/public/img/menu2.png)
+- 住所変更ページ
 
-menu1 と menu2 のウィンドウは、各ページの画面左上にあるアイコンをクリックすることで開くことが可能です。  
-「会員登録」や「ログイン」がされていない場合には menu2 が表示され、Registration のリンクから「会員登録ページ」へ、Login のリンクから「ログインページ」へ遷移が出来ます。  
-また、会員登録後に「ログイン済」の場合には menu1 が表示され、Home のリンクから「飲食店一覧ページ」へ、Logout のリンクからログアウトした上で「ログインページ」へ、Mypage のリンクから、「マイページ」に遷移できるようになっています。
+![住所変更ページ](src/public/img/project/address.jpg)
+
+- プロフィール編集ページ
+
+![プロフィール編集ページ](src/public/img/project/profile.jpg)
 
 - 会員登録ページ
 
-![会員登録ページ](src/public/img/project/register.png)
+![会員登録ページ](src/public/img/project/register.jpg)
 
 - ログインページ
 
-![ログインページ](src/public/img/project/login.png)
+![ログインページ](src/public/img/project/login.jpg)
 
 - コメントページ
 
-![コメントページ](src/public/img/project/comment.png)
+![コメントページ](src/public/img/project/comment.jpg)
 
 ## 作成した目的
 
-coachtechブランドのアイテムを出品することを目的としてに作成。
+coachtech ブランドのアイテムを出品することを目的としてに作成。
 
 ## アプリケーション URL
 
@@ -91,6 +92,12 @@ coachtechブランドのアイテムを出品することを目的としてに�
 
 【追加実装】
 
+- 配送先変更機能
+- Stripe 決済による商品購入機能
+- 支払い方法の選択・変更機能
+- 管理画面(ユーザー削除機能、コメント削除機能)
+- メール送信機能(お知らせメール)
+- 画像のストレージ保存機能︎(AWS の S3 を使用)
 
 ## 使用技術（実行環境）
 
@@ -111,7 +118,7 @@ coachtechブランドのアイテムを出品することを目的としてに�
 
 **Docker ビルド**
 
-1. `git clone git@github.com:kngshi/sim_rese.git(変更前)`
+1. `git clone git@github.com:kngshi/coachtech-furima.git`
 2. DockerDesktop アプリを立ち上げる
 3. `docker-compose up -d --build`
 
