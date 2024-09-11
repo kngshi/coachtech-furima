@@ -53,7 +53,10 @@ class ProfileController extends Controller
 
     public function editAddress(Item $item)
     {
-        return view('address', compact('item'));
+        $user_id = Auth::id();
+        $profile = Profile::where('user_id', $user_id)->first();
+
+        return view('address', compact('item', 'profile'));
     }
 
     public function updateAddress(UpdateAddressRequest $request, Item $item)
