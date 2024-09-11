@@ -28,7 +28,7 @@ class AdminController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-        $profile = $user->profile; // Profileテーブルとのリレーションを使用
+        $profile = $user->profile;
         return response()->json([
             'user' => $user,
             'profile' => $profile
@@ -37,12 +37,10 @@ class AdminController extends Controller
 
     public function destroy($id)
     {
-         // 指定されたIDのユーザーを取得
         $user = User::findOrFail($id);
 
-        // ユーザーと関連するプロフィールを削除
-        $user->profile()->delete(); // ProfileがUserに関連付けられている場合
-        $user->delete(); // ユーザー自体を削除
+        $user->profile()->delete();
+        $user->delete();
 
         return redirect()->route('admin.user-index')->with('success', 'ユーザーが削除されました');
     }
@@ -74,5 +72,4 @@ class AdminController extends Controller
 
         return redirect()->route('admin.notify')->with('success', 'メールの送信に成功しました。');
     }
-
 }

@@ -9,24 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class LikeController extends Controller
 {
-    public function toggleLike($itemId)
-    {
-        $user = Auth::user();
-        $like = Like::where('user_id', $user->id)->where('item_id', $itemId)->first();
-
-        if ($like) {
-            $like->delete();
-        } else {
-            Like::create([
-                'user_id' => $user->id,
-                'item_id' => $itemId,
-            ]);
-        }
-
-        return redirect()->back();
-    }
-
-
     public function like(Request $request, Item $item)
     {
         $user_id = Auth::id();

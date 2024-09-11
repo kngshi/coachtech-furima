@@ -33,14 +33,14 @@ class PaymentMethodController extends Controller
         $paymentMethod = $validatedData['payment_method_id'];
 
         SoldItem::updateOrCreate(
-        [
-            'user_id' => $user_id,
-            'item_id' => $item->id,
-        ],
-        [
-            'payment_method_id' => $paymentMethod,
-        ]
-    );
+            [
+                'user_id' => $user_id,
+                'item_id' => $item->id,
+            ],
+            [
+                'payment_method_id' => $paymentMethod,
+            ]
+        );
 
         return redirect()->route('purchase.info', ['item' => $item->id])
                     ->with('payment_method_id', $paymentMethod)
