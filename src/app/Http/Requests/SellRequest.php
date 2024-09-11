@@ -30,6 +30,9 @@ class SellRequest extends FormRequest
             'description' => 'required|string|max:400',
             'img_url' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'condition_id' => 'required|integer',
+            'parent_category' => 'required|exists:categories,id',
+            'category' => 'required|array',
+            'category.*' => 'exists:categories,id',
         ];
     }
 
@@ -54,7 +57,11 @@ class SellRequest extends FormRequest
             'condition_id.required' => '商品の状態を選択してください。',
             'condition_id.integer' => '商品の状態に正しい値を選択してください。',
             'condition_id.exists' => '選択された商品の状態が無効です。',
-            'child_category.exists' => '選択されたカテゴリが無効です。',
+            'parent_category.required' => '親カテゴリを選択してください。',
+            'parent_category.exists' => '選択された親カテゴリが無効です。',
+            'category.required' => '少なくとも1つの子カテゴリを選択してください。',
+            'category.array' => 'カテゴリは配列で指定してください。',
+            'category.*.exists' => '子カテゴリを選択してください。',
         ];
     }
 }

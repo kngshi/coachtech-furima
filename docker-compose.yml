@@ -42,6 +42,18 @@ services:
         ports:
             - 8080:80
 
+    phpmyadmin_testing:
+        image: phpmyadmin/phpmyadmin
+        environment:
+            - PMA_ARBITRARY=1
+            - PMA_HOST=mysql
+            - PMA_USER=root
+            - PMA_PASSWORD=root
+        depends_on:
+            - mysql
+        ports:
+            - 8081:80
+
     mailhog:
         image: mailhog/mailhog
         ports:

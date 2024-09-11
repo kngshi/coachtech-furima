@@ -36,7 +36,7 @@ class UpdateAddressRequest extends FormRequest
             'postcode.required' => '郵便番号は必須です。',
             'postcode.string' => '郵便番号は文字列で入力してください。',
             'postcode.max' => '郵便番号は10文字以内で入力してください。',
-            'address.nullable' => '',
+            'address.required' => '住所は必須です。',
             'address.string' => '住所は文字列で入力してください。',
             'address.max' => '住所は191文字以内で入力してください。',
             'building.string' => '建物名は文字列で入力してください。',

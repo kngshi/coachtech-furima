@@ -12,6 +12,7 @@ use App\Models\Like;
 use App\Models\PaymentMethod;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Stripe\Stripe;
 use Stripe\Checkout\Session;
@@ -214,11 +215,16 @@ class ItemController extends Controller
             'img_url' => $s3ImageUrl,
             'user_id' => $user_id,
             'condition_id' => $validatedData['condition_id'],
-            'child_category' => 'nullable|integer|exists:categories,id',
         ]);
 
-        if ($request->filled('child_category')) {
-            $item->categories()->sync([$request->child_category]);
+        if ($request->filled('category')) {
+            $categories = $request->input('category');
+            foreach ($categories as $categoryId) {
+                DB::table('category_items')->insert([
+                    'item_id' => $item->id,
+                    'category_id' => $categoryId,
+                ]);
+            }
         }
 
         return redirect()->route('mypage', compact('user_id'))

@@ -21,7 +21,7 @@ class ItemsTableSeeder extends Seeder
             'brand' => 'COACHTECH',
             'price' => '1000',
             'description' => 'これはsample商品（メンズ服）です',
-            'img_url' => 'https://coachtech-furima-sim-bucket.s3.ap-northeast-1.amazonaws.com/items/s2CCkyqhKwQ89vbwGbFVIIN7OqhNmsSqXn2asyOS.png',
+            'img_url' => 'https://coachtech-furima-sim-bucket.s3.ap-northeast-1.amazonaws.com/items/mens_clothes.png',
             'user_id' => '2',
             'condition_id' => '2',
         ];
@@ -33,7 +33,7 @@ class ItemsTableSeeder extends Seeder
             'brand' => 'COACHTECH',
             'price' => '1200',
             'description' => 'これはsample商品2（おもちゃ）です',
-            'img_url' => 'https://coachtech-furima-sim-bucket.s3.ap-northeast-1.amazonaws.com/items/66qvcQCYtuQ6t73yORGjQHfpMggEaia3MMWlXpug.png',
+            'img_url' => 'https://coachtech-furima-sim-bucket.s3.ap-northeast-1.amazonaws.com/items/omocha.png',
             'user_id' => '2',
             'condition_id' => '1',
         ];
@@ -45,7 +45,7 @@ class ItemsTableSeeder extends Seeder
             'brand' => 'COACHTECH',
             'price' => '1500',
             'description' => 'これはsample商品3（本）です',
-            'img_url' => 'https://coachtech-furima-sim-bucket.s3.ap-northeast-1.amazonaws.com/items/yNu6hWqyamMuj2prochz8NzuiK3SaKIoNnzaY3oS.png',
+            'img_url' => 'https://coachtech-furima-sim-bucket.s3.ap-northeast-1.amazonaws.com/items/book.png',
             'user_id' => '2',
             'condition_id' => '3',
         ];
@@ -57,7 +57,7 @@ class ItemsTableSeeder extends Seeder
             'brand' => 'COACHTECH',
             'price' => '1800',
             'description' => 'これはsample商品4（レモン）です',
-            'img_url' => 'https://coachtech-furima-sim-bucket.s3.ap-northeast-1.amazonaws.com/items/l6QPG48uVjAuaHqDAZSzdmGrCZUHOq4IY1B36B8D.png',
+            'img_url' => 'https://coachtech-furima-sim-bucket.s3.ap-northeast-1.amazonaws.com/items/lemon.png',
             'user_id' => '2',
             'condition_id' => '1',
         ];
@@ -65,11 +65,11 @@ class ItemsTableSeeder extends Seeder
 
         $param = [
             'id' => '5',
-            'name' => 'sample商品5',
+            'name' => 'sample商品5（スマホ）',
             'brand' => 'COACHTECH',
-            'price' => '1800',
-            'description' => 'これはsample商品5です',
-            'img_url' => 'https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg',
+            'price' => '7000',
+            'description' => 'これはsample商品5（スマホ）です',
+            'img_url' => 'https://coachtech-furima-sim-bucket.s3.ap-northeast-1.amazonaws.com/items/smartphone.png',
             'user_id' => '3',
             'condition_id' => '2',
         ];

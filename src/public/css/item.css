@@ -39,7 +39,8 @@
 }
 
 .img-box {
-    background-color: gray;
+    border: 1px solid gray;
+    border-radius: 5px;
     height: 400px;
     width: 350px;
     margin: 30px auto;

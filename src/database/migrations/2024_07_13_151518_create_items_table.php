@@ -16,7 +16,7 @@ class CreateItemsTable extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->string('name',191);
-            $table->string('brand',191);
+            $table->string('brand',191)->default('Unknown');
             $table->integer('price');
             $table->text('description',400);
             $table->string('img_url',191)->nullable();

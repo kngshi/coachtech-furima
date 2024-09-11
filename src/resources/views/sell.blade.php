@@ -37,6 +37,12 @@
                 @error('parent_category')
                         <div class="error-message">{{ $message }}</div>
                 @enderror
+                @error('category')
+                    <div class="error-message">{{ $message }}</div>
+                @enderror
+                @error('category.*')
+                    <div class="error-message">{{ $message }}</div>
+                @enderror
             </div>
             <div class="sell-form__inputs">
                 <select name="parent_category" id="parent_category" class="form-input__category">
