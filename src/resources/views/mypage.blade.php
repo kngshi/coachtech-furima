@@ -14,10 +14,10 @@
     <div class="mypage__group">
         @if ($profile)
         <div class="mypage__img">
-            <img src="{{ $profile->img_url }}" alt="プロフィール画像" class="profile-img">
+            <img src="{{ $profile->img_url }}" alt="画像_未設定" class="profile-img">
         </div>
         @else
-        <div class="profile-img" style="background-color: #f0f0f0;"></div>
+        <div class="mypage__img"></div>
         @endif
         @auth
         <div class="mypage__user">{{ Auth::user()->name ? Auth::user()->name : 'ユーザー名_未設定' }}</div>

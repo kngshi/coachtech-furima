@@ -1,3 +1,7 @@
+.search-results {
+    margin: 20px;
+
+}
 .search-result__ttl {
     text-align: center;
     font-size: 26px;
