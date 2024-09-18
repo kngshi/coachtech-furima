@@ -125,7 +125,7 @@ class ItemController extends Controller
 
         $profile = $user->profile;
 
-        if (is_null($profile)) {
+        if (is_null($profile) || empty($profile->postcode) || empty($profile->address)) {
             return redirect()->back()->with('error', '配送先を設定して下さい。');
         }
 
