@@ -5,10 +5,10 @@
 @endsection
 
 @section('content')
+@if (session('success'))
+    <div class="flash-message__success">{{ session('success') }}</div>
+@endif
 <div class="container">
-    @if (session('success'))
-        <div class="flash-message__success">{{ session('success') }}</div>
-    @endif
     <div class="notify-form-container">
         <h1>お知らせメールの送信</h1>
         <form action="{{ route('admin.notify.send') }}" method="POST">
