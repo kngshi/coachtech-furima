@@ -94,11 +94,11 @@ class ItemController extends Controller
         return view('item', compact('item'));
     }
 
-    public function postDetail(Request $request)
+    public function postDetail(Request $request, $item_id)
     {
-        $item = Item::findOrFail($request->item_id);
+        $item = Item::findOrFail($item_id);
 
-        return redirect()->route('purchase.item', ['item' => $request->item_id]);
+        return redirect()->route('purchase.info', ['item' => $item_id]);
     }
 
     public function purchaseInformation(Item $item)

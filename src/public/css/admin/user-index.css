@@ -1,3 +1,7 @@
+.container {
+    padding: 20px;
+}
+
 .user-index__ttl{
     text-align: center;
     font-size: 26px;

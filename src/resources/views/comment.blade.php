@@ -70,13 +70,13 @@
                         <div class="comment-group">
                             <div class="comment-left">{{ $comment->comment }}</div>
                             <div class="comment-right">
-                            @if($comment->user_id === Auth::id() || Auth::user()->role === 1)
+                            @can('delete', $comment)
                                 <form action="{{ route('destroy.comment', ['item' => $item->id, 'comment' => $comment->id]) }}" method="POST" onsubmit="return confirm('本当に削除しますか？');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="delete-button">削除</button>
                                 </form>
-                            @endif
+                            @endcan
                             </div>
                         </div>
                     </div>

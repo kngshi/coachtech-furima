@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
-    public function admin()
+    public function admin(Item $item)
     {
         $users = User::with('profile')->get();
         return view('admin.admin');
@@ -35,7 +35,7 @@ class AdminController extends Controller
         ]);
     }
 
-    public function destroy($id)
+    public function destroyUser($id)
     {
         $user = User::findOrFail($id);
 
@@ -71,5 +71,12 @@ class AdminController extends Controller
         }
 
         return redirect()->route('admin.notify')->with('success', 'メールの送信に成功しました。');
+    }
+
+    public function destroyComment(Item $item, Comment $comment)
+    {
+        $comment->delete();
+
+        return redirect()->route('admin.comments')->with('delete', 'コメントが削除されました。');
     }
 }

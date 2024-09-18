@@ -32,6 +32,14 @@ class CommentController extends Controller
         return redirect()->route('create.comment', $item->id)->with('create', 'コメントが追加されました。');
     }
 
+    public function adminComment(Item $item)
+    {
+        $comments = $item->comments()->latest()->get();
+        $item->load('comments');
+
+        return view('comment', compact('item', 'comments'));
+    }
+
     public function destroy(Item $item, Comment $comment)
     {
         $user = Auth::user();

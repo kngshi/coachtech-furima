@@ -80,7 +80,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.modal-form__delete-btn').forEach(function(button) {
         button.addEventListener('click', function(event) {
-            event.preventDefault();
             if (confirm('本当に削除しますか？')) {
                 button.closest('form').submit();
             }

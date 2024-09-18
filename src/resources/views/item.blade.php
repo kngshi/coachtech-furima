@@ -4,7 +4,6 @@
     <link rel="stylesheet" href="{{ asset('css/item.css') }}" />
 @endsection
 
-
 @section('content')
 @if (session('create'))
     <div class="flash-message__create">{{ session('create') }}</div>
@@ -67,7 +66,7 @@
             @endauth
             </div>
         </div>
-        <form action="{{ route('post.detail') }}" method="POST">
+        <form action="{{ route('post.detail', ['item' => $item->id]) }}" method="POST">
             @csrf
             <input type="hidden" name="item_id" value="{{ $item->id }}">
             <button type="submit" class="purchase__button">購入する</button>
