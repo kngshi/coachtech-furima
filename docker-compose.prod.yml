@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+    nginx:
+        image: nginx:1.21.1
+        ports:
+            - "80:80"
+        volumes:
+            - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+            - ./src:/var/www/
+        depends_on:
+            - php-fpm
+
+    php-fpm:
+        image: php:7.4-fpm
+        volumes:
+            - ./src:/var/www/
+        environment:
+            - APP_ENV=production
+
+    mysql:
+        platform: linux/x86_64
+        image: mysql:8.0.26
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: laravel_db
+            MYSQL_USER: laravel_user
+            MYSQL_PASSWORD: laravel_pass
+        volumes:
+            - ./docker/mysql/data:/var/lib/mysql
+            - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
