@@ -23,9 +23,9 @@ services:
         image: mysql:8.0.26
         environment:
             MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: laravel_db
-            MYSQL_USER: laravel_user
-            MYSQL_PASSWORD: laravel_pass
+            MYSQL_DATABASE: coachtech_furima
+            MYSQL_USER: admin
+            MYSQL_PASSWORD: 20240912furima
         volumes:
             - ./docker/mysql/data:/var/lib/mysql
             - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
