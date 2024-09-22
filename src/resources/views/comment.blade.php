@@ -59,13 +59,16 @@
         </div>
         <div class="comment-section">
             <div class="comment-list" style="max-height: 300px; overflow-y: scroll;">
-                @foreach($comments as $comment)
-                    <div class="comment-item">
+                @foreach($comments as $index => $comment)
+                    @php
+                        $alignmentClass = $index % 4 < 2 ? 'comment-left-align' : 'comment-right-align';
+                    @endphp
+                    <div class="comment-item  {{ $alignmentClass }}">
                         <div class="flex-item">
                             <div class="user-information">
                                 <img src="https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg" alt="user_img" class="user-img">
                             </div>
-                            <div class="user-name">{{ $comment->user->name }}</div>
+                            <div class="user-name">{{ $comment->user->name ? $comment->user->name : 'ユーザー名_未設定' }}</div>
                         </div>
                         <div class="comment-group">
                             <div class="comment-left">{{ $comment->comment }}</div>

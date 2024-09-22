@@ -49,8 +49,8 @@
 .img-box {
     border-radius: 3px;
     border: solid 1px #d3d3d3;
-    height: 150px;
-    width: 150px;
+    height: 180px;
+    width: 180px;
     margin: 30px;
 }
 
@@ -66,9 +66,9 @@
     }
 
     .img-box {
-        height: 200px;
-        width: 200px;
-        margin: 10px;
+        height: 180px;
+        width: 180px;
+        margin: 20px;
     }
 }
 
@@ -80,11 +80,12 @@
 
     .items-index {
         margin:0px;
+        padding-top: 10px;
     }
 
     .img-box {
         height: 130px;
         width: 130px;
-        margin: 5px;
+        margin: 10px;
     }
 }
