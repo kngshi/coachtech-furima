@@ -1,0 +1,120 @@
+version: 2.1
+
+executors:
+  php-executor:
+    docker:
+      - image: circleci/php:7.4.9-fpm-node-browsers
+      - image: nginx:1.21.1
+      - image: mysql:8.0.26
+        environment:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: laravel_db
+          MYSQL_USER: laravel_user
+          MYSQL_PASSWORD: laravel_pass
+
+jobs:
+  build:
+    docker:
+      - image: circleci/php:7.4.9-fpm-node-browsers
+      - image: nginx:1.21.1
+      - image: mysql:8.0.26
+        environment:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: laravel_db
+          MYSQL_USER: laravel_user
+          MYSQL_PASSWORD: laravel_pass
+    steps:
+      - checkout
+
+      - run:
+          name: Install Dependencies
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y default-mysql-client zlib1g-dev libzip-dev unzip libpng-dev
+            docker-php-ext-install pdo_mysql zip gd
+            curl -sS https://getcomposer.org/installer | php
+            mv composer.phar /usr/local/bin/composer
+            composer install
+
+      - run:
+          name: Set up Nginx config
+          command: |
+            mkdir -p /etc/nginx/conf.d
+            echo "
+            server {
+                listen 80;
+                index index.php index.html;
+                server_name localhost;
+
+                root /var/www/public;
+
+                location / {
+                    try_files \$uri \$uri/ /index.php\$is_args\$args;
+                }
+
+                location ~ \.php$ {
+                    fastcgi_split_path_info ^(.+\.php)(/.+)$;
+                    fastcgi_pass php:9000;
+                    fastcgi_index index.php;
+                    include fastcgi_params;
+                    fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+                    fastcgi_param PATH_INFO \$fastcgi_path_info;
+                }
+            }
+            " > /etc/nginx/conf.d/default.conf
+
+      - run:
+          name: Set up MySQL config
+          command: |
+            mkdir -p /etc/mysql/conf.d
+            echo "
+            [mysqld]
+            character-set-server = utf8mb4
+            collation-server = utf8mb4_unicode_ci
+            default-time-zone = 'Asia/Tokyo'
+            socket = /var/run/mysqld/mysqld.sock
+            " > /etc/mysql/conf.d/my.cnf
+
+      - run:
+          name: Run Migrations
+          command: |
+            cp .env.example .env
+            php artisan key:generate
+            php artisan migrate --force
+
+      - run:
+          name: Run Laravel Tests
+          command: php artisan test
+
+  integration_test:
+    docker:
+      - image: circleci/php:7.4.9-fpm-node-browsers
+      - image: nginx:1.21.1
+      - image: mysql:8.0.26
+        environment:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: laravel_db
+          MYSQL_USER: laravel_user
+          MYSQL_PASSWORD: laravel_pass
+    steps:
+      - checkout
+      - run:
+          name: Set up PHP environment
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y default-mysql-client zlib1g-dev libzip-dev unzip libpng-dev
+            docker-php-ext-install pdo_mysql zip gd
+            curl -sS https://getcomposer.org/installer | php
+            mv composer.phar /usr/local/bin/composer
+            composer install
+
+      - run:
+          name: Run Laravel Integration Tests
+          command: php artisan test
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - integration_test
