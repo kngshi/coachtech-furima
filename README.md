@@ -190,7 +190,7 @@ email: admin@example.com
 password: admin1234
 ```
 
-> 一般ユーザーの場合は、以下の２つのアカウントを作成しています。
+> 一般ユーザーの場合は、以下の２つのアカウントを使用して下さい。
 
 ```bash
 name: sample_user
