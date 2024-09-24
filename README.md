@@ -3,7 +3,7 @@
 ある企業が開発した独自のフリマアプリ「coachtech フリマ」です。  
 競合他社のサイトは、機能や画面が複雑で使いづらいという調査から、シンプルな設計で作成しました。
 
-- トップページ（おすすめ商品一覧）  
+- トップページ（おすすめ商品一覧）
 
 ログイン前  
 ![トップページ(ログイン前)](src/public/img/project/top_before.jpg)
@@ -217,19 +217,14 @@ password: sample1234
 4. `npm install`
 5. `npm run dev`
 
-
 **テスト環境構築**
 
 1. `docker-compose exec mysql bash`
+2. テスト用のデータベースを作成
+   MySQL コンテナ上で、ルートユーザーとして作成
 
-2.  テスト用のデータベースを作成
-- MySQLコンテナ上
-```bash
+```text
 mysql -u root -p
-```
-
-- MySQLコンテナにログイン後
-```bash
 CREATE DATABASE demo_test;
 SHOW DATABASES;
 ```
@@ -249,10 +244,10 @@ DB_USERNAME=root
 DB_PASSWORD=root
 ```
 
-5. configファイルの変更
-config/database.phpの'mysql'の配列部分をコピーし'mysql_test'を作成後、以下の部分を変更。
+5. config ファイルの変更
+   config/database.php の'mysql'の配列部分をコピーし'mysql_test'を作成後、以下の部分を変更。
 
-```bash
+```text
 'database' => 'demo_test',
 'username' => 'root',
 'password' => 'root',
@@ -276,9 +271,14 @@ php artisan config:clear
 php artisan migrate --env=testing
 ```
 
-9. phpunit.xmlの編集（テスト実行時）
+9. phpunit.xml の編集（テスト実行時）
 
-以下のように変更して下さい。
+```text
+<!-- <server name="DB_CONNECTION" value="sqlite"/> -->
+<!-- <server name="DB_DATABASE" value=":memory:"/> -->
+```
+
+となっている部分を、以下のように変更して下さい。
 
 ```text
 <server name="DB_CONNECTION" value="mysql_test"/>
