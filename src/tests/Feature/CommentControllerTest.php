@@ -72,7 +72,7 @@ class CommentControllerTest extends TestCase
 
         $response = $this->actingAs($user)->delete(route('destroy.comment', ['item' => $item->id, 'comment' => $comment->id]));
 
-        $response->assertRedirect(route('destroy.comment', $item->id));
+        $response->assertStatus(403);
         $this->assertDatabaseHas('comments', ['id' => $comment->id]);
     }
 
