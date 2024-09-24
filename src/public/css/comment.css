@@ -115,9 +115,8 @@
     height: 30px;
     width: 30px;
     border-radius: 50%;
-    border: 1px solid #ccc;
     object-fit: cover;
-    background-color: white;
+    background-color: #ccc;
 }
 
 .default-profile {

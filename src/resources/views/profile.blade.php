@@ -17,7 +17,7 @@
         @csrf
             <div class="profile-form__group">
                 <div class="group-img">
-                    @if ($profile)
+                    @if ($profile->img_url)
                     <div class="img-item">
                         <img src="{{ $profile->img_url }}" alt="プロフィール画像" class="profile-img">
                     </div>

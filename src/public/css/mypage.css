@@ -28,14 +28,9 @@
 }
 
 .profile-img {
-    padding-top: 45px;
-    padding-left: 5px;
-}
-
-.profile-img {
     height: 120px;
     width: 120px;
-    align-items: center;
+    border-radius: 50%;
 }
 
 .mypage__user {

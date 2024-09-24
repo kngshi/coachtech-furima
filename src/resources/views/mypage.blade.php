@@ -14,7 +14,7 @@
     <div class="mypage__group">
         @if ($profile)
         <div class="mypage__img">
-            <img src="{{ $profile->img_url }}" alt="画像_未設定" class="profile-img">
+            <img src="{{ $profile->img_url }}" alt="" class="profile-img">
         </div>
         @else
         <div class="mypage__img"></div>
