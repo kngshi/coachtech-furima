@@ -221,7 +221,7 @@ password: sample1234
 
 1. `docker-compose exec mysql bash`
 2. テスト用のデータベースを作成
-   MySQL コンテナ上で、ルートユーザーとして作成
+- MySQL コンテナ上で、ルートユーザーとして作成
 
 ```text
 mysql -u root -p
