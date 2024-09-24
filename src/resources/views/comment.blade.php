@@ -66,7 +66,12 @@
                     <div class="comment-item  {{ $alignmentClass }}">
                         <div class="flex-item">
                             <div class="user-information">
-                                <img src="https://coachtech-matter.s3-ap-northeast-1.amazonaws.com/image/sushi.jpg" alt="user_img" class="user-img">
+                                <div class="user-img {{ !isset($comment->user->profile->img_url) ? 'default-profile' : '' }}">
+                                    @if (isset($comment->user->profile) && $comment->user->profile->img_url)
+                                        <img src="{{ $comment->user->profile->img_url }}" alt="user_img" class="user-img">
+                                    @else
+                                    @endif
+                                </div>
                             </div>
                             <div class="user-name">{{ $comment->user->name ? $comment->user->name : 'ユーザー名_未設定' }}</div>
                         </div>

@@ -34,7 +34,7 @@ class CommentController extends Controller
 
     public function adminComment(Item $item)
     {
-        $comments = $item->comments()->latest()->get();
+        $comments = $item->comments()->with('user.profile')->latest()->get();
         $item->load('comments');
 
         return view('comment', compact('item', 'comments'));
