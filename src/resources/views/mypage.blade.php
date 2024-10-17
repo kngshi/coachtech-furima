@@ -45,7 +45,7 @@
         <div class="tab-content__item">
             <div class="items-index">
                 @foreach($soldItems as $soldItem)
-                <a href="{{ route('item.detail', $item->id) }}">
+                <a href="{{ route('item.detail', $soldItem->id) }}">
                     <img src="{{ $soldItem->item->img_url }}" class="img-box" alt="{{ $soldItem->item->name }}">
                 </a>
                 @endforeach
