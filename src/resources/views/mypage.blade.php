@@ -1,14 +1,14 @@
 @extends('layouts.common')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('css/mypage.css') }}" />
+<link rel="stylesheet" href="{{ asset('css/mypage.css') }}" />
 @endsection
 
 @section('content')
 @if (session('success'))
-    <div class="flash-message__success">
-        {{ session('success') }}
-    </div>
+<div class="flash-message__success">
+    {{ session('success') }}
+</div>
 @endif
 <div class="mypage__heading">
     <div class="mypage__group">
@@ -46,7 +46,7 @@
             <div class="items-index">
                 @foreach($soldItems as $soldItem)
                 <a href="{{ route('item.detail', $item->id) }}">
-                    <img src="{{ $soldItem->item->img_url }}" class="img-box" alt="{{ $soldItem->item->name }}" >
+                    <img src="{{ $soldItem->item->img_url }}" class="img-box" alt="{{ $soldItem->item->name }}">
                 </a>
                 @endforeach
             </div>
@@ -56,15 +56,16 @@
 <script>
     const tabs = document.getElementsByClassName('tab-menu__item');
     for (let i = 0; i < tabs.length; i++) {
-      tabs[i].addEventListener('click', tabSwitch);
+        tabs[i].addEventListener('click', tabSwitch);
     }
+
     function tabSwitch() {
-      document.getElementsByClassName('active')[0].classList.remove('active');
-      this.classList.add('active');
-      document.getElementsByClassName('show')[0].classList.remove('show');
-      const arrayTabs = Array.prototype.slice.call(tabs);
-      const index = arrayTabs.indexOf(this);
-      document.getElementsByClassName('tab-content__item')[index].classList.add('show');
+        document.getElementsByClassName('active')[0].classList.remove('active');
+        this.classList.add('active');
+        document.getElementsByClassName('show')[0].classList.remove('show');
+        const arrayTabs = Array.prototype.slice.call(tabs);
+        const index = arrayTabs.indexOf(this);
+        document.getElementsByClassName('tab-content__item')[index].classList.add('show');
     };
 </script>
 @endsection

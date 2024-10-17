@@ -40,13 +40,13 @@ class ItemController extends Controller
 
         if ($request->filled('keyword') || $request->filled('category_id')) {
             $keyword = $request->input('keyword');
-            $query->where(function($q) use ($keyword) {
+            $query->where(function ($q) use ($keyword) {
                 $q->where('name', 'LIKE', "%{$keyword}%")
-                ->orWhere('description', 'LIKE', "%{$keyword}%")
-                ->orWhere('brand', 'LIKE', "%{$keyword}%")
-                ->orWhereHas('categories', function($q) use ($keyword) {
-                    $q->where('name', 'LIKE', "%{$keyword}%");
-                });
+                    ->orWhere('description', 'LIKE', "%{$keyword}%")
+                    ->orWhere('brand', 'LIKE', "%{$keyword}%")
+                    ->orWhereHas('categories', function ($q) use ($keyword) {
+                        $q->where('name', 'LIKE', "%{$keyword}%");
+                    });
             });
         } else {
             $keyword = '';
@@ -106,8 +106,8 @@ class ItemController extends Controller
         $user_id = Auth::id();
 
         $soldItem = SoldItem::where('user_id', $user_id)
-                        ->where('item_id', $item->id)
-                        ->first();
+            ->where('item_id', $item->id)
+            ->first();
 
         if (is_null($soldItem) || is_null($soldItem->payment_method_id)) {
             $paymentMethod = PaymentMethod::find(1);
@@ -130,8 +130,8 @@ class ItemController extends Controller
         }
 
         $soldItem = SoldItem::where('user_id', $user_id)
-                        ->where('item_id', $item->id)
-                        ->first();
+            ->where('item_id', $item->id)
+            ->first();
 
         $paymentMethodId = $soldItem ? $soldItem->payment_method_id : 1;
         $paymentMethod = PaymentMethod::find($paymentMethodId);
@@ -189,7 +189,7 @@ class ItemController extends Controller
         $categories = Category::all();
         $conditions = Condition::all();
 
-        return view('sell', compact('user_id','categories','conditions'));
+        return view('sell', compact('user_id', 'categories', 'conditions'));
     }
 
     public function storeItem(SellRequest $request)
